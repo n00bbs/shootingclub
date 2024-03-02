@@ -3,8 +3,30 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "web: dev",
       "type": "npm",
-      "script": "start",
+      "isBackground": true,
+      "path": "apps/web",
+      "script": "dev",
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": "bundle generation complete"
+          }
+        }
+      }
+    },
+    {
+      "label": "web: test",
+      "type": "npm",
+      "path": "apps/web",
+      "script": "test",
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
@@ -21,8 +43,10 @@
       }
     },
     {
+      "label": "api: start",
       "type": "npm",
-      "script": "test",
+      "path": "apps/api",
+      "script": "start:debug",
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
@@ -33,10 +57,10 @@
             "regexp": "(.*?)"
           },
           "endsPattern": {
-            "regexp": "bundle generation complete"
+            "regexp": "Nest application successfully started"
           }
         }
       }
     }
-  ]
+  ],
 }

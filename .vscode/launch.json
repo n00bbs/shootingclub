@@ -3,17 +3,26 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ng serve",
+      "type": "node",
+      "request": "attach",
+      "name": "Attach NestJS WS",
+      "port": 9229,
+      "address": "localhost",
+      "restart": true,
+      "preLaunchTask": "api: start"
+    },
+    {
+      "name": "web: start",
       "type": "chrome",
+      "preLaunchTask": "web: start",
       "request": "launch",
-      "preLaunchTask": "npm: start",
       "url": "http://localhost:4200/"
     },
     {
-      "name": "ng test",
+      "name": "web: test",
       "type": "chrome",
       "request": "launch",
-      "preLaunchTask": "npm: test",
+      "preLaunchTask": "web: test",
       "url": "http://localhost:9876/debug.html"
     }
   ]

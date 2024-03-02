@@ -1,0 +1,16 @@
+{
+  "name": "@repo/types",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint --ext .ts src/**"
+  },
+  "devDependencies": {},
+  "exports": {
+    "types": "./src/index.ts"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@repo/be-utils",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint --ext .ts src/**"
+  },
+  "devDependencies": {},
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.js"
+    }
+  }
+}

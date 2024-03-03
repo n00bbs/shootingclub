@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "lint": "ng lint",
-    "dev": "ng build --watch --configuration development"
+    "start": "ng serve web",
+    "build": "ng build web",
+    "watch": "ng build web --watch --configuration development",
+    "test": "ng test web",
+    "lint": "ng lint web",
+    "dev": "ng build web --watch --configuration development",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "private": true,
   "dependencies": {

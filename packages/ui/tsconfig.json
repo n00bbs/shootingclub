@@ -1,0 +1,6 @@
+{
+  "extends": "@repo/typescript-config/angular.json",
+  "compilerOptions": {
+    "types": []
+  },
+}

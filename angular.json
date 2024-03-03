@@ -107,6 +107,31 @@
           }
         }
       }
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "packages/ui",
+      "sourceRoot": "packages/ui/src",
+      "prefix": "ui",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "packages/ui/src/test.ts",
+            "tsConfig": "packages/ui/tsconfig.spec.json",
+            "karmaConfig": "packages/ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ui/src/**/*.ts",
+              "packages/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -30,5 +30,11 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@angular/animations": "^17.0.0 || ^18.0.0",
+    "@angular/cdk": "~17.2.1",
+    "@angular/forms": "^17.0.0 || ^18.0.0",
+    "@angular/material": "~17.2.1"
+  }
 }

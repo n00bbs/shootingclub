@@ -3,9 +3,9 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "api: start",
       "type": "node",
       "request": "attach",
-      "name": "Attach NestJS WS",
       "port": 9229,
       "address": "localhost",
       "restart": true,

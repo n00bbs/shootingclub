@@ -3,11 +3,11 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "web: dev",
+      "label": "web: start",
       "type": "npm",
       "isBackground": true,
       "path": "apps/web",
-      "script": "dev",
+      "script": "start",
       "problemMatcher": {
         "owner": "typescript",
         "pattern": "$tsc",

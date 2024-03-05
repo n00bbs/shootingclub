@@ -1,1 +1,2 @@
-export const a = 1;
+// layouts
+export * from './layout/sc-base';

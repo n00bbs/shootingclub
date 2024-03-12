@@ -19,10 +19,6 @@ const baseModules = [
 // import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 // const materialModules = [MatSlideToggleModule];
 
-// SC ui
-import { ScBaseLayoutModule } from '@repo/ui';
-const scModules = [ScBaseLayoutModule];
-
 // App Components
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +26,7 @@ import { BrowserModule } from '@angular/platform-browser';
 const appComponents = undefined;
 
 @NgModule({
-  imports: [...baseModules, ...scModules],
+  imports: [...baseModules],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
 })

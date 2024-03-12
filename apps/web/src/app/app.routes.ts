@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { ScBaseLayoutComponent } from '@repo/ui';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: ScBaseLayoutComponent,
+    component: AppComponent,
     children: [],
   },
 ];

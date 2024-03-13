@@ -15,19 +15,19 @@ const baseModules = [
   BrowserAnimationsModule,
 ];
 
-// // Material UI
-// import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-// const materialModules = [MatSlideToggleModule];
+// Material UI
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+const materialModules = [MatSlideToggleModule];
 
 // App Components
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-const appComponents = undefined;
+const appComponents = [AppComponent];
 
 @NgModule({
-  imports: [...baseModules],
-  declarations: [AppComponent],
+  imports: [...baseModules, ...materialModules],
+  declarations: [...appComponents],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

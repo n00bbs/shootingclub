@@ -30,6 +30,7 @@
               "apps/web/src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/web/src/styles.scss"
             ],
             "scripts": []
@@ -90,6 +91,7 @@
               "apps/web/src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/web/src/styles.scss"
             ],
             "scripts": []
@@ -101,6 +103,31 @@
             "lintFilePatterns": [
               "apps/web/src/**/*.ts",
               "apps/web/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "packages/ui",
+      "sourceRoot": "packages/ui/src",
+      "prefix": "ui",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "packages/ui/src/test.ts",
+            "tsConfig": "packages/ui/tsconfig.spec.json",
+            "karmaConfig": "packages/ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ui/src/**/*.ts",
+              "packages/ui/src/**/*.html"
             ]
           }
         }

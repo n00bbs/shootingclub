@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -14,6 +15,7 @@ export class UserAddressEntity {
   id: string;
 
   @OneToOne(() => UserEntity, (user) => user.address)
+  @JoinColumn()
   user: UserAddressEntity;
 
   @Column({ type: 'varchar', length: 128, nullable: false })

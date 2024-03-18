@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { entities } from './entities';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './modules/users/users.module';
+
+const appModules = [UsersModule];
 
 @Module({
   imports: [
@@ -23,6 +26,7 @@ import { ConfigModule } from '@nestjs/config';
       applicationName: 'shootingclub-api',
       synchronize: true,
     }),
+    ...appModules,
   ],
   controllers: [AppController],
   providers: [AppService],

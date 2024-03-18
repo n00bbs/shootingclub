@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "cSpell.words": ["typeorm"],
+  "cSpell.words": ["postgresql", "typeorm"],
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }

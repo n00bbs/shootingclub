@@ -1,6 +1,13 @@
-import { Column, CreateDateColumn, Entity, ManyToOne } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm/browser';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { RoleEntity } from './role.entity';
+import { UserAddressEntity } from './userAddress.entity';
 
 @Entity()
 export class UserEntity {
@@ -20,7 +27,7 @@ export class UserEntity {
   birthDate: Date;
 
   @ManyToOne(() => RoleEntity)
-  roleId: RoleEntity;
+  role: RoleEntity;
 
   @Column({ type: 'varchar', length: 64, nullable: false })
   passwordHash: string;
@@ -30,4 +37,7 @@ export class UserEntity {
 
   @CreateDateColumn({ type: 'timestamp with time zone', nullable: false })
   joinedAt: Date;
+
+  @OneToOne(() => UserAddressEntity, (address) => address.user)
+  address: UserAddressEntity;
 }

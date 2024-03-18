@@ -1,6 +1,5 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm/browser';
-import { UserEntity } from '.';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from './user.entity';
 
 @Entity()
 export class UserPaymentEntity {
@@ -8,7 +7,7 @@ export class UserPaymentEntity {
   id: string;
 
   @ManyToOne(() => UserEntity)
-  userId: string;
+  user: UserEntity;
 
   @Column({ type: 'money', nullable: false })
   amount: number;

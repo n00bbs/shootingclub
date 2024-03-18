@@ -1,15 +1,20 @@
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm/browser';
-import { CityEntity, UserEntity } from '.';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { CityEntity } from './city.entity';
+import { UserEntity } from './user.entity';
 
 @Entity()
 export class UserAddressEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @OneToMany(() => UserEntity, (user) => user.id)
-  //? is this right? why do the docs [https://typeorm.io/many-to-one-one-to-many-relations#] say @OneToMany requires @ManyToOne on the inverse side of the relationship but I get no error?
-  userId: string;
+  @OneToOne(() => UserEntity, (user) => user.address)
+  user: UserAddressEntity;
 
   @Column({ type: 'varchar', length: 128, nullable: false })
   streetName: string;
@@ -18,6 +23,5 @@ export class UserAddressEntity {
   streetNumber: string;
 
   @ManyToOne(() => CityEntity)
-  //? don't save duplicate city + postal code combo in database, check if already exists first
-  cityId: string;
+  city: CityEntity;
 }

@@ -1,6 +1,6 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm/browser';
-import { UserEntity, WeaponTypeEntity } from '.';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from './user.entity';
+import { WeaponTypeEntity } from './weaponType.entity';
 
 @Entity()
 export class UserWeaponEntity {
@@ -8,10 +8,10 @@ export class UserWeaponEntity {
   id: string;
 
   @ManyToOne(() => UserEntity)
-  userId: string;
+  user: UserEntity;
 
   @ManyToOne(() => WeaponTypeEntity)
-  weaponTypeId: string;
+  weaponType: WeaponTypeEntity;
 
   @Column({ type: 'varchar', length: 64, nullable: false })
   serialNumber: string;

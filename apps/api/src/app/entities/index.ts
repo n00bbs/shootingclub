@@ -1,15 +1,3 @@
-export * from './user.entity';
-export * from './city.entity';
-export * from './department.entity';
-export * from './role.entity';
-export * from './userAddress.entity';
-export * from './userAttendance.entity';
-export * from './userDepartmentChange.entity';
-export * from './userDepartmentChangeType.entity';
-export * from './userPayment.entity';
-export * from './userWeapon.entity';
-export * from './weaponType.entity';
-
 import { UserEntity } from './user.entity';
 import { CityEntity } from './city.entity';
 import { DepartmentEntity } from './department.entity';

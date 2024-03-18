@@ -1,5 +1,9 @@
-import { Column, CreateDateColumn, Entity } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm/browser';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class WeaponTypeEntity {

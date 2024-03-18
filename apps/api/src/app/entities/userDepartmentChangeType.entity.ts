@@ -1,5 +1,5 @@
-import { Column, Entity } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm/browser';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UserDepartmentChangeEntity } from './userDepartmentChange.entity';
 
 @Entity()
 export class UserDepartmentChangeTypeEntity {
@@ -8,4 +8,10 @@ export class UserDepartmentChangeTypeEntity {
 
   @Column({ type: 'varchar', length: 16, nullable: false })
   name: string;
+
+  @OneToMany(
+    () => UserDepartmentChangeEntity,
+    (userDepartmentChange) => userDepartmentChange.userDepartmentChangeType,
+  )
+  userDepartmentChange: UserDepartmentChangeEntity;
 }

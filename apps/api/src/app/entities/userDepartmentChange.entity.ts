@@ -1,6 +1,8 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { PrimaryGeneratedColumn } from 'typeorm/browser';
-import { DepartmentEntity, UserEntity } from '.';
+import { UserEntity } from './user.entity';
+import { DepartmentEntity } from './department.entity';
+import { UserDepartmentChangeTypeEntity } from './userDepartmentChangeType.entity';
 
 @Entity()
 export class UserDepartmentChangeEntity {
@@ -8,14 +10,14 @@ export class UserDepartmentChangeEntity {
   id: string;
 
   @ManyToOne(() => UserEntity)
-  userId: string;
+  user: UserEntity;
 
   @ManyToOne(() => DepartmentEntity)
-  departmentId: string;
+  department: DepartmentEntity;
 
   @Column({ type: 'timestamp with time zone', nullable: false })
   date: Date;
 
-  @Column({ type: 'uuid', nullable: false })
-  userDepartmentChangeTypeId: string;
+  @ManyToOne(() => UserDepartmentChangeTypeEntity)
+  userDepartmentChangeType: UserDepartmentChangeTypeEntity;
 }

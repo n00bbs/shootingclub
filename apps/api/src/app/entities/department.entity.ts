@@ -1,5 +1,4 @@
-import { Column, Entity } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm/browser';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class DepartmentEntity {
@@ -9,7 +8,9 @@ export class DepartmentEntity {
   @Column({ type: 'varchar', length: 64, nullable: false })
   name: string;
 
-  @Column({ type: 'money', nullable: false })
-  // consider using int with magnifier and currency type instead (store amount as cents)
+  /**
+   * @description 'as Eurocent'
+   */
+  @Column({ type: 'int', nullable: false })
   fee: number;
 }

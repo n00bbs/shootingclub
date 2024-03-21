@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidebar.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>shootingclub</span>
+  </mat-toolbar>
+  <mat-drawer-container class="content" hasBackdrop="false">
+    <mat-drawer #sidebar (openedChange)="openedChange()">
+      <mat-nav-list class="nav-list">
+        <mat-list-item routerLink="/dashboard" (click)="sidebar.toggle()">Dashboard</mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content class="inner-wrapper">
+      aaaa
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  <mat-toolbar class="footer">
+    <a routerLink="/imprint">Impressum</a>
+    <a routerLink="privacy-policy">Datenschutz</a>
+  </mat-toolbar>
+</div>

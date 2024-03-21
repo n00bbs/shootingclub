@@ -5,9 +5,10 @@ import { distinctUntilChanged, fromEvent, map, startWith } from 'rxjs';
   providedIn: 'root',
 })
 export class ResizeService {
-  private resize$ = fromEvent(window, 'resize')
-    .pipe(map(() => ({ width: window.innerWidth, height: window.innerHeight })))
-    .pipe(startWith({ width: window.innerWidth, height: window.innerHeight }));
+  private resize$ = fromEvent(window, 'resize').pipe(
+    map(() => ({ width: window.innerWidth, height: window.innerHeight })),
+    startWith({ width: window.innerWidth, height: window.innerHeight }),
+  );
 
   constructor() {}
 

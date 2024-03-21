@@ -3,11 +3,32 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
+  createPlatform,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { ResizeService } from '../../services/resize/resize.service';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
+
+interface SidebarElement {
+  routerLink: string | string[];
+  label: string;
+  id: string;
+}
+
+const sidebarElements: SidebarElement[] = [
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    routerLink: 'dashboard',
+  },
+  {
+    id: 'weapons',
+    label: 'Weapons',
+    routerLink: 'weapons',
+  },
+];
 
 @Component({
   selector: 'app-default-layout',
@@ -16,28 +37,37 @@ import { MatDrawer } from '@angular/material/sidenav';
 })
 export class DefaultLayoutComponent implements AfterViewInit {
   @ViewChild('sidebar') sidebar!: MatDrawer;
-  private sidebarOpenStateChanged = false;
-  private nextSidebarStateChangeAffection = true;
 
-  constructor(private resizeService: ResizeService) {}
+  selectedSidebarElementId: string = '';
+
+  sidebarElements: SidebarElement[] = sidebarElements;
+
+  constructor(
+    private resizeService: ResizeService,
+    private router: Router,
+  ) {}
+
+  onSidebarElementSelect(sidebarElementId: string) {
+    this.selectedSidebarElementId = sidebarElementId;
+    const sidebarElement = this.sidebarElements.find(
+      (elem) => elem.id === sidebarElementId,
+    );
+    if (!sidebarElement) return;
+    const routerLink = Array.isArray(sidebarElement.routerLink)
+      ? sidebarElement.routerLink
+      : [sidebarElement.routerLink];
+    this.router.navigate(routerLink);
+  }
 
   ngAfterViewInit() {
     this.setupSidebar();
   }
 
-  openedChange() {
-    if (this.nextSidebarStateChangeAffection) {
-      this.sidebarOpenStateChanged = true;
-    }
-    this.nextSidebarStateChangeAffection = true;
-  }
-
   private setupSidebar() {
     this.resizeService.getIsMobile().subscribe((isMobile) => {
       this.sidebar.mode = isMobile ? 'over' : 'side';
-      if (!this.sidebarOpenStateChanged) {
-        this.nextSidebarStateChangeAffection = false;
-        this.sidebar.opened = !isMobile;
+      if (this.sidebar.opened && isMobile) {
+        this.sidebar.opened = false;
       }
     });
   }

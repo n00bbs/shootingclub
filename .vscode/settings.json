@@ -1,7 +1,12 @@
 {
   "editor.formatOnSave": true,
-  "cSpell.words": ["postgresql", "typeorm"],
+  "cSpell.words": [
+    "postgresql",
+    "typeorm"
+  ],
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.indentSize": "tabSize",
+  "editor.tabSize": 2,
 }

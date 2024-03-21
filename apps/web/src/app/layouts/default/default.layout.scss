@@ -1,0 +1,42 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+:host {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  .inner-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  .content {
+    flex: 1;
+  }
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 2rem;
+    font-size: small;
+    font-weight: 100;
+    * {
+      margin: 0 0.25rem;
+    }
+    a {
+      color: #000;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .nav-list {
+    width: 10rem;
+  }
+}

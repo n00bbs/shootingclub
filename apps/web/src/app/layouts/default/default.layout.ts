@@ -4,12 +4,14 @@ import {
   AfterViewInit,
   Component,
   createPlatform,
+  NgModule,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { ResizeService } from '../../services/resize/resize.service';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 interface SidebarElement {
   routerLink: string | string[];
@@ -27,6 +29,11 @@ const sidebarElements: SidebarElement[] = [
     id: 'weapons',
     label: 'Weapons',
     routerLink: 'weapons',
+  },
+  {
+    id: 'members',
+    label: 'Members',
+    routerLink: 'members',
   },
 ];
 
@@ -72,3 +79,10 @@ export class DefaultLayoutComponent implements AfterViewInit {
     });
   }
 }
+
+@NgModule({
+  imports: [CommonModule],
+  declarations: [DefaultLayoutComponent],
+  exports: [DefaultLayoutComponent],
+})
+export class DefaultLayoutModule {}

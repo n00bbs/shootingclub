@@ -35,12 +35,26 @@ const materialModules = [
 
 // App Components
 import { AppComponent } from './app.component';
-import { DefaultLayoutComponent } from './layouts/default/default.layout';
-const appComponents = [AppComponent, DefaultLayoutComponent];
+import { DefaultLayoutModule } from './layouts/default';
+import { DashboardPageModule } from './pages/dashboard';
+import { DepartmentsPageModule } from './pages/departments';
+import { MembersPageModule } from './pages/members';
+import { ProfilePageModule } from './pages/profile';
+import { UsersPageModule } from './pages/users';
+import { WeaponsPageModule } from './pages/weapons';
+const appModules = [
+  DefaultLayoutModule,
+  DashboardPageModule,
+  DepartmentsPageModule,
+  MembersPageModule,
+  ProfilePageModule,
+  UsersPageModule,
+  WeaponsPageModule,
+];
 
 @NgModule({
-  imports: [...baseModules, ...materialModules],
-  declarations: [...appComponents],
+  imports: [...baseModules, ...materialModules, ...appModules],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

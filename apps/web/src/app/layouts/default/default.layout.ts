@@ -10,8 +10,14 @@ import {
 } from '@angular/core';
 import { ResizeService } from '../../services/resize/resize.service';
 import { MatDrawer } from '@angular/material/sidenav';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 interface SidebarElement {
   routerLink: string | string[];
@@ -81,7 +87,16 @@ export class DefaultLayoutComponent implements AfterViewInit {
 }
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatSlideToggleModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+  ],
   declarations: [DefaultLayoutComponent],
   exports: [DefaultLayoutComponent],
 })

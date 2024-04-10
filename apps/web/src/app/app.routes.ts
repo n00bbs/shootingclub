@@ -1,5 +1,11 @@
 import { Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './layouts/default/default.layout';
+import { MembersPageComponent } from './pages/members/members.page';
+import { DashboardPageComponent } from './pages/dashboard';
+import { DepartmentsPageComponent } from './pages/departments';
+import { ProfilePageComponent } from './pages/profile';
+import { UsersPageComponent } from './pages/users';
+import { WeaponsPageComponent } from './pages/weapons';
 
 export const routes: Routes = [
   {
@@ -13,6 +19,13 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    children: [],
+    children: [
+      { path: 'dashboard', component: DashboardPageComponent },
+      { path: 'departments', component: DepartmentsPageComponent },
+      { path: 'members', component: MembersPageComponent },
+      { path: 'profile', component: ProfilePageComponent },
+      { path: 'users', component: UsersPageComponent },
+      { path: 'weapons', component: WeaponsPageComponent },
+    ],
   },
 ];

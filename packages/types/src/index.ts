@@ -1,1 +1,1 @@
-export type a = string;
+export * as members from './members';

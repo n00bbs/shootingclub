@@ -1,1 +1,15 @@
-here members
+<mat-list>
+  @for (member of members; track member) {
+  <mat-list-item>
+    <mat-icon matListItemIcon fontIcon="person" />
+    <div matListItemTitle>{{ member.name }}</div>
+    <div matListItemLine>
+      <mat-chip-grid>
+        @for (department of member.departments; track department) {
+        <mat-chip>{{ department.name }}</mat-chip>
+        }
+      </mat-chip-grid>
+    </div>
+  </mat-list-item>
+  }
+</mat-list>

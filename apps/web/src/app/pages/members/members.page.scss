@@ -1,0 +1,22 @@
+:host {
+  .member-list {
+    width: 20%;
+
+    mat-chip {
+      height: 1.5rem;
+      border-radius: 0.25rem;
+      &.green {
+        background-color: aquamarine;
+      }
+      &.red {
+        background-color: rgb(214, 47, 47);
+      }
+      &.blue {
+        background-color: cornflowerblue;
+      }
+    }
+    mat-divider {
+      margin: 0.5rem 0;
+    }
+  }
+}

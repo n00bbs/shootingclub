@@ -1,15 +1,26 @@
-<mat-list>
-  @for (member of members; track member) {
+<mat-list class="member-list">
+  @for (member of members; track member; let i = $index) {
   <mat-list-item>
     <mat-icon matListItemIcon fontIcon="person" />
-    <div matListItemTitle>{{ member.name }}</div>
-    <div matListItemLine>
-      <mat-chip-grid>
+    <div matListItemTitle>
+      {{ member.name }}
+      <mat-chip-set>
         @for (department of member.departments; track department) {
-        <mat-chip>{{ department.name }}</mat-chip>
+        <mat-chip [class]="department.color">{{ department.name }}</mat-chip>
         }
-      </mat-chip-grid>
+      </mat-chip-set>
     </div>
   </mat-list-item>
+  <mat-divider *ngIf="members.length-1 !== i" />
   }
 </mat-list>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Actions Buttons</mat-card-title>
+    <mat-card-subtitle>End</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions align="end">
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

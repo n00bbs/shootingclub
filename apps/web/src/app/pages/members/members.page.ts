@@ -3,6 +3,7 @@ import { Component, NgModule } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
 import { members } from '@repo/types';
 
 @Component({
@@ -19,13 +20,34 @@ export class MembersPageComponent {
       departments: [
         {
           id: '',
-          name: 'Hurentreiber',
-          color: 'fe36fs',
+          name: 'Bogen',
+          color: 'green',
         },
         {
           id: '',
           name: 'Schützen',
-          color: '',
+          color: 'red',
+        },
+      ],
+    },
+    {
+      id: '',
+      name: 'Peter',
+      departments: [
+        {
+          id: '',
+          name: 'Schützen',
+          color: 'red',
+        },
+        {
+          id: '',
+          name: 'Speerwerfen',
+          color: 'blue',
+        },
+        {
+          id: '',
+          name: 'Bogen',
+          color: 'green',
         },
       ],
     },
@@ -33,7 +55,13 @@ export class MembersPageComponent {
 }
 
 @NgModule({
-  imports: [CommonModule, MatListModule, MatIconModule, MatChipsModule],
+  imports: [
+    CommonModule,
+    MatListModule,
+    MatIconModule,
+    MatChipsModule,
+    MatCardModule,
+  ],
   declarations: [MembersPageComponent],
   exports: [MembersPageComponent],
 })

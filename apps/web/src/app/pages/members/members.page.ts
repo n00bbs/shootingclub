@@ -25,7 +25,7 @@ export class MembersPageComponent {
         },
         {
           id: '',
-          name: 'Schützen',
+          name: 'Feuerwaffen',
           color: 'red',
         },
       ],
@@ -36,12 +36,12 @@ export class MembersPageComponent {
       departments: [
         {
           id: '',
-          name: 'Schützen',
+          name: 'Feuerwaffen',
           color: 'red',
         },
         {
           id: '',
-          name: 'Speerwerfen',
+          name: 'Luftdruck',
           color: 'blue',
         },
         {

@@ -7,6 +7,8 @@ import { ProfilePageComponent } from './pages/profile';
 import { UsersPageComponent } from './pages/users';
 import { WeaponsPageComponent } from './pages/weapons';
 
+import { MembersDetailComponent } from './components/members-detail/members-detail.component';
+
 export const routes: Routes = [
   {
     path: 'privacy-policy',
@@ -22,7 +24,11 @@ export const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardPageComponent },
       { path: 'departments', component: DepartmentsPageComponent },
-      { path: 'members', component: MembersPageComponent },
+      {
+        path: 'members',
+        component: MembersPageComponent,
+        children: [{ path: ':id', component: MembersDetailComponent }],
+      },
       { path: 'profile', component: ProfilePageComponent },
       { path: 'users', component: UsersPageComponent },
       { path: 'weapons', component: WeaponsPageComponent },

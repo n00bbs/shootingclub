@@ -1,4 +1,6 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+$footer-height: 2rem;
 
 :host {
   display: flex;
@@ -6,21 +8,18 @@
   height: 100%;
   width: 100%;
   .inner-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
     padding: 1rem;
   }
   .content {
     flex: 1;
+    padding-bottom: $footer-height;
   }
   .footer {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    height: 2rem;
+    height: $footer-height;
     font-size: small;
     font-weight: 100;
     * {

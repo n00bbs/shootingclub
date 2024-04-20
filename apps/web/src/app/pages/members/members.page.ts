@@ -1,10 +1,12 @@
+import { members } from '@repo/types';
 import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { members } from '@repo/types';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-members',
@@ -15,7 +17,7 @@ export class MembersPageComponent {
   constructor() {}
   members: members.getAll.Member[] = [
     {
-      id: '',
+      id: '123',
       name: 'Hans',
       departments: [
         {
@@ -31,7 +33,7 @@ export class MembersPageComponent {
       ],
     },
     {
-      id: '',
+      id: '456',
       name: 'Peter',
       departments: [
         {
@@ -61,6 +63,8 @@ export class MembersPageComponent {
     MatIconModule,
     MatChipsModule,
     MatCardModule,
+    MatButtonModule,
+    RouterModule,
   ],
   declarations: [MembersPageComponent],
   exports: [MembersPageComponent],

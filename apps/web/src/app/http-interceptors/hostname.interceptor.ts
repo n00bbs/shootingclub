@@ -30,7 +30,6 @@ export class HostnameInterceptor implements HttpInterceptor {
       });
       return next.handle(newRequest);
     }
-
     return next.handle(request);
   }
 }

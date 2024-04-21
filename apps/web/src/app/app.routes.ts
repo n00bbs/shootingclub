@@ -22,6 +22,7 @@ export const routes: Routes = [
     path: '',
     component: DefaultLayoutComponent,
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardPageComponent },
       { path: 'departments', component: DepartmentsPageComponent },
       {

@@ -9,6 +9,7 @@ import { UserDepartmentChangeTypeEntity } from './userDepartmentChangeType.entit
 import { UserPaymentEntity } from './userPayment.entity';
 import { UserWeaponEntity } from './userWeapon.entity';
 import { WeaponTypeEntity } from './weaponType.entity';
+import { MemberEntity } from './member.entity';
 
 export const entities = [
   UserEntity,
@@ -22,4 +23,5 @@ export const entities = [
   UserPaymentEntity,
   UserWeaponEntity,
   WeaponTypeEntity,
+  MemberEntity,
 ];

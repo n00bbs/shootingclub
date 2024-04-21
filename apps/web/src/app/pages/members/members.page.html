@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-content>
+  <mat-card-content *ngIf="members">
     <mat-list class="member-list">
       @for (member of members; track member; let i = $index) {
       <mat-list-item [routerLink]="['/members', member.id]">

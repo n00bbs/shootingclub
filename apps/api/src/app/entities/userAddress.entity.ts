@@ -5,6 +5,7 @@ import {
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { CityEntity } from './city.entity';
 import { UserEntity } from './user.entity';
@@ -26,4 +27,7 @@ export class UserAddressEntity {
 
   @ManyToOne(() => CityEntity)
   city: CityEntity;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

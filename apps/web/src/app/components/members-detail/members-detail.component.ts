@@ -6,9 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { OnInit } from '@angular/core';
+import { MembersService, MembersServiceModule } from '../../services/members';
 
 @Component({
   selector: 'app-members-details',
@@ -16,9 +19,14 @@ import { OnInit } from '@angular/core';
   styleUrls: ['members-detail.component.scss'],
 })
 export class MembersDetailComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private membersService: MembersService,
+  ) {}
 
   private memberId?: string;
+
+  member?: members.getOne.ResponsePayload;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -28,7 +36,26 @@ export class MembersDetailComponent implements OnInit {
   }
 
   loadMemberDetails() {
-    console.log('Loading member details for member ID:', this.memberId);
+    if (!this.memberId) {
+      throw new Error('No member ID provided');
+    }
+    this.membersService.getOne(this.memberId).then((member) => {
+      this.member = member;
+    });
+  }
+
+  onDepartmentChange(id: string, join: boolean) {
+    if (!this.memberId) {
+      throw new Error('No member ID provided');
+    }
+    this.membersService
+      .createUserDepartmentChange(this.memberId, {
+        departmentId: id,
+        type: join ? 'join' : 'leave',
+      })
+      .then(() => {
+        this.loadMemberDetails();
+      });
   }
 }
 
@@ -41,6 +68,9 @@ export class MembersDetailComponent implements OnInit {
     MatCardModule,
     MatButtonModule,
     RouterModule,
+    MembersServiceModule,
+    MatGridListModule,
+    MatSelectModule,
   ],
   declarations: [MembersDetailComponent],
   exports: [MembersDetailComponent],

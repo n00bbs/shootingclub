@@ -7,6 +7,11 @@
   mat-card {
     margin-right: 1rem;
     width: 20%;
+    min-width: 300px;
+  }
+
+  .scroll-content {
+    overflow-y: auto;
   }
 
   .member-list {

@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -21,4 +22,7 @@ export class WeaponTypeEntity {
 
   @CreateDateColumn({ type: 'timestamp with time zone', nullable: false })
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

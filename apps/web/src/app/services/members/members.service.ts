@@ -18,6 +18,26 @@ export class MembersService {
       ),
     );
   }
+
+  getOne(id: string) {
+    return lastValueFrom(
+      this.http.get<members.getOne.ResponsePayload>(
+        `${this.apiEndpoint}/getOne/${id}`,
+      ),
+    );
+  }
+
+  createUserDepartmentChange(
+    userId: string,
+    payload: members.createUserDepartmentChange.RequestPayload,
+  ) {
+    return lastValueFrom(
+      this.http.post<members.createUserDepartmentChange.ResponsePayload>(
+        `${this.apiEndpoint}/createUserDepartmentChange/${userId}`,
+        payload,
+      ),
+    );
+  }
 }
 
 @NgModule({

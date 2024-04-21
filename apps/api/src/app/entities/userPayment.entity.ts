@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { UserEntity } from './user.entity';
 
 @Entity()
@@ -14,4 +20,7 @@ export class UserPaymentEntity {
 
   @Column({ type: 'timestamp with time zone', nullable: false })
   date: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

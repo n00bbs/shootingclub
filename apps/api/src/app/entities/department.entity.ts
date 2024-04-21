@@ -1,12 +1,9 @@
 import {
   Column,
   Entity,
-  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserEntity } from './user.entity';
-// import { MemberEntity } from './member.entity';
 
 @Entity()
 export class DepartmentEntity {

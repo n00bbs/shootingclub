@@ -84,17 +84,6 @@ export class MembersService {
       result.departmentChanges,
     );
 
-    const mappedDepartments = allDepartments.map(
-      (department): members.getOne.Department => ({
-        id: department.id,
-        name: department.name,
-        color: department.color,
-        joined: currentDepartments.some(
-          (currentDepartment) => currentDepartment.id === department.id,
-        ),
-      }),
-    );
-
     return {
       id: result.id,
       name: `${result.firstName} ${result.lastName}`,

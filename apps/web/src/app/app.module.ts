@@ -22,6 +22,7 @@ import { MembersPageModule } from './pages/members';
 import { ProfilePageModule } from './pages/profile';
 import { UsersPageModule } from './pages/users';
 import { WeaponsPageModule } from './pages/weapons';
+import { httpInterceptors } from './http-interceptors';
 const appModules = [
   DefaultLayoutModule,
   DashboardPageModule,
@@ -36,5 +37,6 @@ const appModules = [
   imports: [...baseModules, ...appModules],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
+  providers: [httpInterceptors],
 })
 export class AppModule {}

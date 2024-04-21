@@ -1,13 +1,4 @@
-import {
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  createPlatform,
-  NgModule,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, NgModule, ViewChild } from '@angular/core';
 import { ResizeService } from '../../services/resize/resize.service';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router, RouterModule } from '@angular/router';

@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { MemberEntity } from '../../entities/member.entity';
+import { UserEntity } from '../../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { members } from '@repo/types';
 
 @Injectable()
 export class MembersService {
   constructor(
-    @InjectRepository(MemberEntity)
-    private readonly membersRepository: Repository<MemberEntity>,
+    @InjectRepository(UserEntity)
+    private readonly membersRepository: Repository<UserEntity>,
   ) {}
 
   async getAll(): Promise<members.getAll.ResponsePayload> {
@@ -17,7 +17,13 @@ export class MembersService {
       (member): members.getAll.Member => ({
         id: member.id,
         name: `${member.firstName} ${member.lastName}`,
-        departments: [],
+        departments: member.departments?.map(
+          (department): members.getAll.Department => ({
+            id: department.id,
+            name: department.name,
+            color: department.color,
+          }),
+        ),
       }),
     );
     return {

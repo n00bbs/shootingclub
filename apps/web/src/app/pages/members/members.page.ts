@@ -23,6 +23,10 @@ export class MembersPageComponent implements OnInit {
       this.members = members.data;
     });
   }
+
+  getChipsStyle(department: members.getAll.Department): string {
+    return `background-color: #${department.color}`;
+  }
 }
 
 @NgModule({

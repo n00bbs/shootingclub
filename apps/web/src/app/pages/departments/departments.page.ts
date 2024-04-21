@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
-import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-departments',

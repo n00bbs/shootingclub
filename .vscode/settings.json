@@ -1,7 +1,10 @@
 {
   "editor.formatOnSave": true,
-  "cSpell.words": ["postgresql", "typeorm"],
+  "cSpell.words": ["devkit", "nestjs", "postgresql", "shootingclub", "typeorm"],
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.indentSize": "tabSize",
+  "editor.tabSize": 2,
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

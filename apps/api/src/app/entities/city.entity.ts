@@ -1,4 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class CityEntity {
@@ -10,4 +15,7 @@ export class CityEntity {
 
   @Column({ type: 'varchar', length: 128, nullable: false })
   name: string;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

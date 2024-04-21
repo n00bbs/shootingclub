@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { UserEntity } from './user.entity';
 import { WeaponTypeEntity } from './weaponType.entity';
 
@@ -18,4 +24,7 @@ export class UserWeaponEntity {
 
   @Column({ type: 'timestamp with time zone', nullable: false })
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

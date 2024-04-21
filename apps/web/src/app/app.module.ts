@@ -1,33 +1,42 @@
 import { NgModule } from '@angular/core';
 
 // Base Modules
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 const baseModules = [
   BrowserModule,
-  CommonModule,
-  FormsModule,
   RouterModule.forRoot(routes),
   RouterOutlet,
   BrowserAnimationsModule,
 ];
 
-// Material UI
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-const materialModules = [MatSlideToggleModule];
-
 // App Components
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-const appComponents = [AppComponent];
+import { DefaultLayoutModule } from './layouts/default';
+import { DashboardPageModule } from './pages/dashboard';
+import { DepartmentsPageModule } from './pages/departments';
+import { MembersPageModule } from './pages/members';
+import { ProfilePageModule } from './pages/profile';
+import { UsersPageModule } from './pages/users';
+import { WeaponsPageModule } from './pages/weapons';
+import { httpInterceptors } from './http-interceptors';
+const appModules = [
+  DefaultLayoutModule,
+  DashboardPageModule,
+  DepartmentsPageModule,
+  MembersPageModule,
+  ProfilePageModule,
+  UsersPageModule,
+  WeaponsPageModule,
+];
 
 @NgModule({
-  imports: [...baseModules, ...materialModules],
-  declarations: [...appComponents],
+  imports: [...baseModules, ...appModules],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
+  providers: [httpInterceptors],
 })
 export class AppModule {}

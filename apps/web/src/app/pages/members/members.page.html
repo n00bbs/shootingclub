@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Members</mat-card-title>
+    <mat-card-subtitle>Members of the organization</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content *ngIf="members" class="scroll-content">
+    <mat-list class="member-list">
+      @for (member of members; track member; let i = $index) {
+      <mat-list-item [routerLink]="['/members', member.id]">
+        <mat-icon matListItemIcon fontIcon="person" />
+        <div matListItemTitle>
+          {{ member.name }}
+          <mat-chip-set>
+            @for (department of member.departments; track department) {
+            <mat-chip-row [style]="getChipsStyle(department)" [routerLink]="['/departments', department.id]">
+              {{ department.name }}
+            </mat-chip-row>
+            }
+          </mat-chip-set>
+        </div>
+      </mat-list-item>
+      <mat-divider *ngIf="members.length-1 !== i" />
+      }
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+<router-outlet />

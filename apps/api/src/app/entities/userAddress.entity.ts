@@ -1,9 +1,11 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { CityEntity } from './city.entity';
 import { UserEntity } from './user.entity';
@@ -14,6 +16,7 @@ export class UserAddressEntity {
   id: string;
 
   @OneToOne(() => UserEntity, (user) => user.address)
+  @JoinColumn()
   user: UserAddressEntity;
 
   @Column({ type: 'varchar', length: 128, nullable: false })
@@ -24,4 +27,7 @@ export class UserAddressEntity {
 
   @ManyToOne(() => CityEntity)
   city: CityEntity;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

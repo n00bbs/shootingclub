@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+
+  mat-card {
+    margin-right: 1rem;
+    width: 20%;
+    min-width: 300px;
+  }
+
+  .scroll-content {
+    overflow-y: auto;
+  }
+
+  .member-list {
+    mat-list-item {
+      min-height: 56px;
+      height: fit-content;
+      cursor: pointer;
+    }
+    mat-chip-row {
+      height: 1.5rem;
+      border-radius: 0.25rem;
+      &.green {
+        background-color: aquamarine;
+      }
+      &.red {
+        background-color: crimson;
+      }
+      &.blue {
+        background-color: cornflowerblue;
+      }
+    }
+    mat-divider {
+      margin: 0.5rem 0;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidebar.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>shootingclub</span>
+</mat-toolbar>
+<mat-drawer-container class="content" hasBackdrop="false">
+  <mat-drawer #sidebar>
+    <mat-nav-list class="nav-list">
+      <mat-list-item *ngFor="let sidebarElement of sidebarElements"
+        (click)="onSidebarElementSelect(sidebarElement.id)"
+        [activated]="sidebarElement.id === selectedSidebarElementId">{{sidebarElement.label}}</mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content class="inner-wrapper">
+    <router-outlet />
+  </mat-drawer-content>
+</mat-drawer-container>
+<mat-toolbar class="footer">
+  <a routerLink="/imprint">Impressum</a>
+  <a routerLink="privacy-policy">Datenschutz</a>
+</mat-toolbar>

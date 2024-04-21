@@ -3,11 +3,14 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { RoleEntity } from './role.entity';
 import { UserAddressEntity } from './userAddress.entity';
+import { UserDepartmentChangeEntity } from './userDepartmentChange.entity';
 
 @Entity()
 export class UserEntity {
@@ -26,6 +29,9 @@ export class UserEntity {
   @Column({ type: 'date', nullable: false })
   birthDate: Date;
 
+  @OneToMany(() => UserDepartmentChangeEntity, (change) => change.user)
+  departmentChanges: UserDepartmentChangeEntity[];
+
   @ManyToOne(() => RoleEntity)
   role: RoleEntity;
 
@@ -40,4 +46,7 @@ export class UserEntity {
 
   @OneToOne(() => UserAddressEntity, (address) => address.user)
   address: UserAddressEntity;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

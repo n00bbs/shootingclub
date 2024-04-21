@@ -8,7 +8,7 @@
           {{ member.name }}
           <mat-chip-set>
             @for (department of member.departments; track department) {
-            <mat-chip-row [class]="department.color">
+            <mat-chip-row [style]="getChipsStyle(department)">
               {{ department.name }}
             </mat-chip-row>
             }

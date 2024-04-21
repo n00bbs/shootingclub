@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { MemberEntity } from './member.entity';
 
 @Entity()
 export class DepartmentEntity {
@@ -13,4 +14,10 @@ export class DepartmentEntity {
    */
   @Column({ type: 'int', nullable: false })
   fee: number;
+
+  @ManyToMany(() => MemberEntity, (member) => member.departments)
+  members: MemberEntity[];
+
+  @Column({ type: 'varchar', length: 6, nullable: false })
+  color: string;
 }

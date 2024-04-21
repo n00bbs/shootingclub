@@ -1,22 +1,32 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { UserEntity } from './user.entity';
 import { DepartmentEntity } from './department.entity';
-import { UserDepartmentChangeTypeEntity } from './userDepartmentChangeType.entity';
 
 @Entity()
 export class UserDepartmentChangeEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => UserEntity)
+  @ManyToOne(() => UserEntity, (user) => user.departmentChanges)
   user: UserEntity;
 
   @ManyToOne(() => DepartmentEntity)
   department: DepartmentEntity;
 
-  @Column({ type: 'timestamp with time zone', nullable: false })
-  date: Date;
+  @Column({
+    type: 'enum',
+    enum: ['join', 'leave'],
+    nullable: false,
+  })
+  changeType: 'join' | 'leave';
 
-  @ManyToOne(() => UserDepartmentChangeTypeEntity)
-  userDepartmentChangeType: UserDepartmentChangeTypeEntity;
+  @CreateDateColumn({ type: 'timestamp with time zone', nullable: false })
+  createdAt: Date;
 }

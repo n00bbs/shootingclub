@@ -23,7 +23,6 @@ export class HostnameInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    console.log(request.url);
     if (!request.url.startsWith('http') && this.isNotApiRequest(request)) {
       const newRequest = request.clone({
         url: this.concatUrl(this.apiHost, request.url),

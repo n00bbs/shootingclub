@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,7 @@ export class DashboardPageComponent {
 }
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule],
   declarations: [DashboardPageComponent],
   exports: [DashboardPageComponent],
 })

@@ -5,11 +5,10 @@ import { RoleEntity } from './role.entity';
 import { UserAddressEntity } from './userAddress.entity';
 import { UserAttendanceEntity } from './userAttendance.entity';
 import { UserDepartmentChangeEntity } from './userDepartmentChange.entity';
-import { UserDepartmentChangeTypeEntity } from './userDepartmentChangeType.entity';
 import { UserPaymentEntity } from './userPayment.entity';
 import { UserWeaponEntity } from './userWeapon.entity';
 import { WeaponTypeEntity } from './weaponType.entity';
-import { MemberEntity } from './member.entity';
+// import { MemberEntity } from './member.entity';
 
 export const entities = [
   UserEntity,
@@ -19,9 +18,8 @@ export const entities = [
   UserAddressEntity,
   UserAttendanceEntity,
   UserDepartmentChangeEntity,
-  UserDepartmentChangeTypeEntity,
   UserPaymentEntity,
   UserWeaponEntity,
   WeaponTypeEntity,
-  MemberEntity,
+  // MemberEntity,
 ];

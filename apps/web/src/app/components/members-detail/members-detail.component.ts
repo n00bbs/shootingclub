@@ -7,7 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { OnInit } from '@angular/core';
@@ -22,10 +22,12 @@ export class MembersDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private membersService: MembersService,
+    private router: Router,
   ) {}
 
   private memberId?: string;
 
+  loading = true;
   member?: members.getOne.ResponsePayload;
 
   ngOnInit(): void {
@@ -39,12 +41,20 @@ export class MembersDetailComponent implements OnInit {
     if (!this.memberId) {
       throw new Error('No member ID provided');
     }
-    this.membersService.getOne(this.memberId).then((member) => {
-      this.member = member;
-    });
+    this.membersService
+      .getOne(this.memberId)
+      .then((member) => {
+        this.member = member;
+        this.loading = false;
+      })
+      .catch(() => {
+        this.loading = false;
+      });
   }
 
   onDepartmentChange(id: string, join: boolean) {
+    if (this.loading) return;
+    this.loading = true;
     if (!this.memberId) {
       throw new Error('No member ID provided');
     }
@@ -54,7 +64,12 @@ export class MembersDetailComponent implements OnInit {
         type: join ? 'join' : 'leave',
       })
       .then(() => {
-        this.loadMemberDetails();
+        // this.router.navigate(['/']).then(() => {
+        //   this.router.navigate(['/members', this.memberId]);
+        // });
+      })
+      .catch(() => {
+        this.loading = false;
       });
   }
 }

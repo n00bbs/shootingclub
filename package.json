@@ -19,7 +19,7 @@
     "prettier": "^3.2.5",
     "tsconfig-paths": "^4.2.0",
     "turbo": "latest",
-    "@angular-devkit/build-angular": "^17.2.2",
+    "@angular-devkit/build-angular": "^17.3.5",
     "@angular/cli": "^17.2.2",
     "@angular/compiler-cli": "^17.2.0",
     "@types/jasmine": "~5.1.0",

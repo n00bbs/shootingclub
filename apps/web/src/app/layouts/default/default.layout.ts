@@ -33,11 +33,6 @@ const sidebarElements: SidebarElement[] = [
     routerLink: 'members',
   },
   {
-    id: 'users',
-    label: 'Users',
-    routerLink: 'users',
-  },
-  {
     id: 'weapons',
     label: 'Weapons',
     routerLink: 'weapons',

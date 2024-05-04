@@ -20,7 +20,6 @@ import { DashboardPageModule } from './pages/dashboard';
 import { DepartmentsPageModule } from './pages/departments';
 import { MembersPageModule } from './pages/members';
 import { ProfilePageModule } from './pages/profile';
-import { UsersPageModule } from './pages/users';
 import { WeaponsPageModule } from './pages/weapons';
 import { httpInterceptors } from './http-interceptors';
 const appModules = [
@@ -29,7 +28,6 @@ const appModules = [
   DepartmentsPageModule,
   MembersPageModule,
   ProfilePageModule,
-  UsersPageModule,
   WeaponsPageModule,
 ];
 

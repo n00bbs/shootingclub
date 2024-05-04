@@ -1,1 +1,21 @@
-this departments
+<!-- anlegen, löschen, beitrag anpassen, farbe auswählen -->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Abteilungen</mat-card-title>
+    <mat-card-subtitle>Abteilungen des Vereins</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content *ngIf="departments" class="scroll-content">
+    <mat-list class="department-list">
+      @for (department of departments; track department; let i = $index) {
+      <mat-list-item [routerLink]="['/departments', department.id]">
+        <mat-icon matListItemIcon fontIcon="person" />
+        <div matListItemTitle>
+          {{ department.name }}
+        </div>
+      </mat-list-item>
+      <mat-divider *ngIf="departments.length-1 !== i" />
+      }
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+<router-outlet />

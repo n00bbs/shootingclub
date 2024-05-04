@@ -5,7 +5,8 @@ export interface Department {
 }
 export interface Member {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   departments: Department[];
 }
 export interface ResponsePayload {

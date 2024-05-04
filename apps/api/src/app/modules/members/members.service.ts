@@ -49,7 +49,8 @@ export class MembersService {
     const mappedMembers = result.map(
       (member): members.getAll.Member => ({
         id: member.id,
-        name: `${member.firstName} ${member.lastName}`,
+        firstName: member.firstName,
+        lastName: member.lastName,
         departments: this.calculateCurrentDepartments(
           member.departmentChanges,
         )?.map(

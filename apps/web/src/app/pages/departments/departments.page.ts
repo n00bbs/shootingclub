@@ -40,7 +40,7 @@ export class DepartmentsPageComponent implements OnInit {
 
   openCreateDialog() {
     const dialogRef = this.dialogService.open(DepartmentsCreateDialogComponent);
-    lastValueFrom(dialogRef.afterClosed()).then((result) => {});
+    lastValueFrom(dialogRef.afterClosed()).then(() => {});
   }
 
   updateDepartmentFee(departmentId: string, fee: string) {

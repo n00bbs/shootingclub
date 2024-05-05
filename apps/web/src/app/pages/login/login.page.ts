@@ -1,14 +1,14 @@
-import { Component, NgModule } from '@angular/core';
+import { AfterViewInit, Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthModule, AuthService } from '../../services/auth';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements AfterViewInit {
   constructor(
     private authService: AuthService,
     private router: Router,

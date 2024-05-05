@@ -24,17 +24,17 @@ const sidebarElements: SidebarElement[] = [
   },
   {
     id: 'departments',
-    label: 'Departments',
+    label: 'Abteilungen',
     routerLink: 'departments',
   },
   {
     id: 'members',
-    label: 'Members',
+    label: 'Mitglieder',
     routerLink: 'members',
   },
   {
     id: 'weapons',
-    label: 'Weapons',
+    label: 'Waffen',
     routerLink: 'weapons',
   },
 ];

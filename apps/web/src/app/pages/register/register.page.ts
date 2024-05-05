@@ -24,7 +24,7 @@ export class RegisterPageComponent {
     private router: Router,
     private route: ActivatedRoute,
   ) {}
-  private redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/';
+  private redirectUrl = this.route.snapshot.queryParams['redirectUrl'];
 
   username = '';
   password = '';
@@ -33,12 +33,6 @@ export class RegisterPageComponent {
   birthdate = '';
 
   hide = true;
-
-  ngAfterViewInit() {
-    // this.username = 'admin';
-    // this.password = 'admin';
-    // this.login();
-  }
 
   redirectToLoginPage() {
     this.router.navigate(['/login'], {

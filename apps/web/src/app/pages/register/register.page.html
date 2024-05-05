@@ -14,7 +14,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Geburtsdatum</mat-label>
-      <input matInput [matDatepicker]="picker" autocomplete="bday" />
+      <input matInput [matDatepicker]="picker" autocomplete="bday" [(ngModel)]="birthdate"/>
       <mat-hint>DD.MM.YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -25,7 +25,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Passwort</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" autocomplete="current-password" />
+      <input matInput [type]="hide ? 'password' : 'text'" autocomplete="current-password" [(ngModel)]="password"/>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
@@ -33,7 +33,7 @@
   </mat-card-content>
   <mat-card-actions align="end">
     <button mat-button (click)="redirectToLoginPage()">Abbrechen</button>
-    <button mat-button cdkFocusInitial (click)="register()">
+    <button mat-button cdkFocusInitial (click)="register()" [disabled]="!username || !password || !first_name || !last_name || !birthdate">
       Registrieren
     </button>
   </mat-card-actions>

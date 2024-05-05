@@ -13,33 +13,29 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPageComponent implements AfterViewInit {
+export class LoginPageComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
   ) {}
-  private redirectUrl = `/${this.route.snapshot.queryParams['redirectUrl']}`;
+  private redirectUrl = this.route.snapshot.queryParams['redirectUrl'];
 
   username = '';
   password = '';
 
   hide = true;
 
-  ngAfterViewInit() {
-    // this.username = 'admin';
-    // this.password = 'admin';
-    // this.login();
-  }
-
   redirectToRegisterPage() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/register'], {
+      queryParams: { redirectUrl: this.redirectUrl },
+    });
   }
 
   async login() {
     await this.authService.login(this.username, this.password);
     console.log('Logged in', this.redirectUrl);
-    this.router.navigateByUrl(this.redirectUrl);
+    this.router.navigateByUrl(`/${this.redirectUrl}`);
   }
 }
 

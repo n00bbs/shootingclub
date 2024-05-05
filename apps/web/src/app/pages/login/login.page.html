@@ -10,7 +10,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Passwort</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" autocomplete="current-password" />
+      <input matInput [type]="hide ? 'password' : 'text'" autocomplete="current-password" [(ngModel)]="password"/>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
@@ -18,6 +18,6 @@
   </mat-card-content>
   <mat-card-actions align="end">
     <button mat-button (click)="redirectToRegisterPage()">Registrieren</button>
-    <button mat-button cdkFocusInitial>Anmelden</button>
+    <button mat-button [disabled]="!username || !password" cdkFocusInitial (click)="login()">Anmelden</button>
   </mat-card-actions>
 </mat-card>

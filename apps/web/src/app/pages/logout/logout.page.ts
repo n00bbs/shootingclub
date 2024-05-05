@@ -12,7 +12,7 @@ export class LogoutPageComponent {
     private router: Router,
   ) {
     this.authService.logout();
-    this.router.navigate([]);
+    this.router.navigate(['/']);
   }
 }
 

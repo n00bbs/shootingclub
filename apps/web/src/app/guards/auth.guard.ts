@@ -21,9 +21,14 @@ export const IsAuthenticatedGuard: CanActivateFn = (
     return true;
   }
 
+  let redirectUrl: string | undefined = state.url.replace(/^\//, '');
+  if (['login', 'register', 'logout', 'dashboard'].includes(redirectUrl)) {
+    redirectUrl = undefined;
+  }
+
   return router.createUrlTree(['/login'], {
     queryParams: {
-      redirectUrl: state.url,
+      redirectUrl: redirectUrl,
     },
   });
 };

@@ -61,7 +61,7 @@ export class AuthService {
     password: string,
     first_name: string,
     last_name: string,
-    birthdate: string,
+    birthdate: Date,
   ) {
     console.log(
       'Registering user',

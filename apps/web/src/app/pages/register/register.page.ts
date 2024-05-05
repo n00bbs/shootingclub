@@ -47,12 +47,13 @@ export class RegisterPageComponent {
   }
 
   async register() {
+    const parsedBirthdate = new Date(this.birthdate);
     await this.authService.register(
       this.username,
       this.password,
       this.first_name,
       this.last_name,
-      this.birthdate,
+      parsedBirthdate,
     );
     this.router.navigateByUrl(this.redirectUrl);
   }

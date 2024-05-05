@@ -13,6 +13,9 @@ export class RoleEntity {
   @Column({ type: 'varchar', length: 16, nullable: false })
   name: string;
 
+  @Column({ type: 'boolean', default: false })
+  isDefault: boolean;
+
   @UpdateDateColumn()
   updatedAt: Date;
 }

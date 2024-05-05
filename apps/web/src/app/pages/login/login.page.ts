@@ -19,7 +19,7 @@ export class LoginPageComponent implements AfterViewInit {
     private router: Router,
     private route: ActivatedRoute,
   ) {}
-  private redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/';
+  private redirectUrl = `/${this.route.snapshot.queryParams['redirectUrl']}`;
 
   username = '';
   password = '';

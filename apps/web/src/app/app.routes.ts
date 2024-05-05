@@ -10,9 +10,9 @@ import { MembersDetailComponent } from './components/members-detail/members-deta
 import { LoginPageComponent } from './pages/login/login.page';
 import { RegisterPageComponent } from './pages/register/register.page';
 import { IsAuthenticatedGuard } from './guards/auth.guard';
+import { LogoutPageComponent } from './pages/logout/logout.page';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginPageComponent,
@@ -46,8 +46,11 @@ export const routes: Routes = [
             children: [{ path: ':id', component: MembersDetailComponent }],
           },
           { path: 'weapons', component: WeaponsPageComponent },
+          { path: 'logout', component: LogoutPageComponent },
+          { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
         ],
       },
     ],
   },
+  { path: '**', redirectTo: '/' },
 ];

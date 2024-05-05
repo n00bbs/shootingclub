@@ -1,6 +1,5 @@
 import { Controller, Get, Post, Query, Req } from '@nestjs/common';
 import { UserAuthService } from './userAuth.service';
-import { userAuth } from '@repo/types';
 
 @Controller('auth')
 export class UserAuthController {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 // Base Modules
-import { RouterModule } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterModule } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,13 +22,18 @@ import { MembersPageModule } from './pages/members';
 import { ProfilePageModule } from './pages/profile';
 import { WeaponsPageModule } from './pages/weapons';
 import { httpInterceptors } from './http-interceptors';
+import { AuthModule } from './services/auth';
+import { IsAuthenticatedGuard } from './guards/auth.guard';
+import { LoginPageModule } from './pages/login/login.page';
 const appModules = [
+  AuthModule,
   DefaultLayoutModule,
   DashboardPageModule,
   DepartmentsPageModule,
   MembersPageModule,
   ProfilePageModule,
   WeaponsPageModule,
+  LoginPageModule,
 ];
 
 @NgModule({

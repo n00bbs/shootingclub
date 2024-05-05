@@ -7,30 +7,42 @@ import { ProfilePageComponent } from './pages/profile';
 import { WeaponsPageComponent } from './pages/weapons';
 
 import { MembersDetailComponent } from './components/members-detail/members-detail.component';
+import { LoginPageComponent } from './pages/login/login.page';
+import { IsAuthenticatedGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
-    path: 'privacy-policy',
-    redirectTo: 'https://google.com/search?q=datenschutz',
-  },
-  {
-    path: 'imprint',
-    redirectTo: 'https://google.com/search?q=impressum',
+    path: 'login',
+    component: LoginPageComponent,
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    canActivate: [IsAuthenticatedGuard],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardPageComponent },
-      { path: 'departments', component: DepartmentsPageComponent },
       {
-        path: 'members',
-        component: MembersPageComponent,
-        children: [{ path: ':id', component: MembersDetailComponent }],
+        path: 'privacy-policy',
+        redirectTo: 'https://google.com/search?q=datenschutz',
       },
-      { path: 'profile', component: ProfilePageComponent },
-      { path: 'weapons', component: WeaponsPageComponent },
+      {
+        path: 'imprint',
+        redirectTo: 'https://google.com/search?q=impressum',
+      },
+      {
+        path: '',
+        component: DefaultLayoutComponent,
+        children: [
+          { path: 'dashboard', component: DashboardPageComponent },
+          { path: 'profile', component: ProfilePageComponent },
+          { path: 'departments', component: DepartmentsPageComponent },
+          {
+            path: 'members',
+            component: MembersPageComponent,
+            children: [{ path: ':id', component: MembersDetailComponent }],
+          },
+          { path: 'weapons', component: WeaponsPageComponent },
+        ],
+      },
     ],
   },
 ];

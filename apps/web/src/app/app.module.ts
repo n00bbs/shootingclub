@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 // Base Modules
-import { ActivatedRouteSnapshot, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +25,6 @@ import { ProfilePageModule } from './pages/profile';
 import { WeaponsPageModule } from './pages/weapons';
 import { httpInterceptors } from './http-interceptors';
 import { AuthModule } from './services/auth';
-import { IsAuthenticatedGuard } from './guards/auth.guard';
 import { LoginPageModule } from './pages/login/login.page';
 const appModules = [
   AuthModule,

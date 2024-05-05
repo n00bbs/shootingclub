@@ -38,9 +38,6 @@ export class UserEntity {
   @Column({ type: 'varchar', length: 64, nullable: false })
   passwordHash: string;
 
-  @Column({ type: 'varchar', length: undefined, nullable: false })
-  passwordSalt: string;
-
   @CreateDateColumn({ type: 'timestamp with time zone', nullable: false })
   joinedAt: Date;
 

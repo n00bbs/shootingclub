@@ -1,12 +1,9 @@
 import { inject } from '@angular/core';
 import {
-  ActivatedRoute,
   ActivatedRouteSnapshot,
   CanActivateFn,
   Router,
   RouterStateSnapshot,
-  UrlSerializer,
-  UrlTree,
 } from '@angular/router';
 import { AuthService } from '../services/auth';
 

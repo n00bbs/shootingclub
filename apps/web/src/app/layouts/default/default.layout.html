@@ -2,13 +2,15 @@
   <button mat-icon-button (click)="sidebar.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>shootingclub</span>
+  <span>Der glühende Colt</span>
+  <button class="logout-button" mat-icon-button [routerLink]="['/logout']">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-drawer-container class="content" hasBackdrop="false">
   <mat-drawer #sidebar>
     <mat-nav-list class="nav-list">
-      <mat-list-item *ngFor="let sidebarElement of sidebarElements"
-        (click)="onSidebarElementSelect(sidebarElement.id)"
+      <mat-list-item *ngFor="let sidebarElement of sidebarElements" (click)="onSidebarElementSelect(sidebarElement.id)"
         [activated]="sidebarElement.id === selectedSidebarElementId">{{sidebarElement.label}}</mat-list-item>
     </mat-nav-list>
   </mat-drawer>

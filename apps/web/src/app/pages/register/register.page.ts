@@ -7,13 +7,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MatNativeDateModule,
+  provideNativeDateAdapter,
+} from '@angular/material/core';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPageComponent {
+export class RegisterPageComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -23,6 +28,9 @@ export class LoginPageComponent {
 
   username = '';
   password = '';
+  first_name = '';
+  last_name = '';
+  birthdate = '';
 
   hide = true;
 
@@ -32,13 +40,20 @@ export class LoginPageComponent {
     // this.login();
   }
 
-  redirectToRegisterPage() {
-    this.router.navigate(['/register']);
+  redirectToLoginPage() {
+    this.router.navigate(['/login'], {
+      queryParams: { redirectUrl: this.redirectUrl },
+    });
   }
 
-  async login() {
-    await this.authService.login(this.username, this.password);
-    console.log('Logged in', this.redirectUrl);
+  async register() {
+    await this.authService.register(
+      this.username,
+      this.password,
+      this.first_name,
+      this.last_name,
+      this.birthdate,
+    );
     this.router.navigateByUrl(this.redirectUrl);
   }
 }
@@ -52,8 +67,10 @@ export class LoginPageComponent {
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatDatepickerModule,
   ],
-  declarations: [LoginPageComponent],
-  exports: [LoginPageComponent],
+  providers: [provideNativeDateAdapter()],
+  declarations: [RegisterPageComponent],
+  exports: [RegisterPageComponent],
 })
-export class LoginPageModule {}
+export class RegisterPageModule {}

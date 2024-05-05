@@ -6,11 +6,13 @@ import { RouterOutlet } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 const baseModules = [
   BrowserModule,
   RouterModule.forRoot(routes),
   RouterOutlet,
   BrowserAnimationsModule,
+  MatNativeDateModule,
 ];
 
 // App Components
@@ -40,6 +42,9 @@ const appModules = [
   imports: [...baseModules, ...appModules],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [httpInterceptors],
+  providers: [
+    httpInterceptors,
+    { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+  ],
 })
 export class AppModule {}

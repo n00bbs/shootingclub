@@ -1,6 +1,13 @@
 {
   "editor.formatOnSave": true,
-  "cSpell.words": ["devkit", "nestjs", "postgresql", "shootingclub", "typeorm"],
+  "cSpell.words": [
+    "birthdate",
+    "devkit",
+    "nestjs",
+    "postgresql",
+    "shootingclub",
+    "typeorm"
+  ],
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

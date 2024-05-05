@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Registrierung</mat-card-title>
+    <!-- <mat-card-subtitle></mat-card-subtitle> -->
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Vorname</mat-label>
+      <input matInput [(ngModel)]="first_name" autocomplete="name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nachname</mat-label>
+      <input matInput [(ngModel)]="last_name" autocomplete="family-name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Geburtsdatum</mat-label>
+      <input matInput [matDatepicker]="picker" autocomplete="bday" />
+      <mat-hint>DD.MM.YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="username" autocomplete="username" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Passwort</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" autocomplete="current-password" />
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="redirectToLoginPage()">Abbrechen</button>
+    <button mat-button cdkFocusInitial (click)="register()">
+      Registrieren
+    </button>
+  </mat-card-actions>
+</mat-card>

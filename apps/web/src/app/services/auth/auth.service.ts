@@ -56,6 +56,24 @@ export class AuthService {
     }
   }
 
+  async register(
+    username: string,
+    password: string,
+    first_name: string,
+    last_name: string,
+    birthdate: string,
+  ) {
+    console.log(
+      'Registering user',
+      username,
+      password,
+      first_name,
+      last_name,
+      birthdate,
+    );
+    this.roles = ['user'];
+  }
+
   logout() {
     this.setCredentials(undefined);
   }

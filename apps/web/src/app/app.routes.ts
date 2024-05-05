@@ -8,6 +8,7 @@ import { WeaponsPageComponent } from './pages/weapons';
 
 import { MembersDetailComponent } from './components/members-detail/members-detail.component';
 import { LoginPageComponent } from './pages/login/login.page';
+import { RegisterPageComponent } from './pages/register/register.page';
 import { IsAuthenticatedGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -15,6 +16,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterPageComponent,
   },
   {
     path: '',

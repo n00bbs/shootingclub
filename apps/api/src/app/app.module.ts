@@ -4,12 +4,12 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { entities } from './entities';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './modules/users/users.module';
 import { HttpLoggerMiddleware, TypeOrmLoggerContainer } from './logger';
 import { RouterModule } from '@nestjs/core';
 import { MembersModule } from './modules/members/members.module';
+import { DepartmentsModule } from './modules/departments/departments.module';
 
-const appModules = [UsersModule, MembersModule];
+const appModules = [MembersModule, DepartmentsModule];
 
 @Module({
   imports: [

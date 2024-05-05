@@ -1,81 +1,157 @@
-# Turborepo starter
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
+<!--
+*** README template taken from https://github.com/othneildrew/Best-README-Template
+-->
 
-This is an official starter Turborepo.
 
-## Using this example
 
-Run the following command:
+<!-- PROJECT SHIELDS -->
+<!--
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![MIT License][license-shield]][license-url]
 
-```sh
-npx create-turbo@latest
-```
 
-## What's inside?
 
-This Turborepo includes the following packages/apps:
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="image/README/project_icon.svg" alt="Logo" width="80" height="80">
+  </a>
 
-### Apps and Packages
+<h3 align="center">shootingclub</h3>
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+  <p align="center">
+    member administration for a shooting club (school project) 
+    <br />
+    <a href="http://localhost:4200"><strong>View Live Demo »</strong></a>
+    <br />
+  </p>
+</div>
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Utilities
 
-This Turborepo has some additional tools already setup for you:
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
 
-### Build
 
-To build all apps and packages, run the following command:
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-```
-cd my-turborepo
-pnpm build
-```
+This is a school project.
 
-### Develop
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-To develop all apps and packages, run the following command:
 
-```
-cd my-turborepo
-pnpm dev
-```
 
-### Remote Caching
+### Built With
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+* [![Typescript][Typescript-logo]][Typescript-url]
+* [![Angular][Angular.io]][Angular-url]
+* [![Nest][Nest-logo]][Nest-url]
+* [![SCSS][SCSS-logo]][SCSS-url]
+* [![Turborepo][Turborepo-logo]][Turborepo-url]
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-```
-cd my-turborepo
-npx turbo login
-```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+<!-- GETTING STARTED -->
+## Getting Started
 
-```
-npx turbo link
-```
+You can skip this section and simply use the live demo. If you insist on running the project locally, follow these simple steps.
 
-## Useful Links
+### Prerequisites
 
-Learn more about the power of Turborepo:
+* Node 20
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+### Installation
+
+1. Clone the repo
+   ```
+   git clone https://github.com/n00bbs/shootingclub.git
+   ```
+2. Install NPM packages
+   ```
+   npm ci
+   ```
+3. Start the backend and frontend server
+   ```
+   npx turbo run start --scope api
+   ```
+   ```
+   npx turbo run start --scope web
+   ```
+4. Open this link in your browser
+   ```
+    http://localhost:4200
+    ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the GPLv3 License. See `LICENSE` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* [Project Icon made by Rafiico Creative Studio Co., Ltd. (CC BY 3.0 DEED)](https://www.iconfinder.com/icons/6843063/accuracy_archery_arrow_business_goal_success_target_icon)
+* [README template made by Othneil Drew (MIT License)](https://github.com/othneildrew/Best-README-Template)
+* [TypeORM logger made by Devin Fee](https://github.com/nestjs/nest/issues/3657)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[license-shield]: https://img.shields.io/github/license/n00bbs/shootingclub.svg?style=for-the-badge
+[license-url]: https://github.com/n00bbs/shootingclub/blob/main/LICENSE
+[product-screenshot]: images/screenshot.png
+
+[Typescript-logo]: https://img.shields.io/badge/Typescript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+[Typescript-url]: https://www.typescriptlang.org/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Nest-logo]: https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white
+[Nest-url]: https://nestjs.com/
+[SCSS-logo]: https://img.shields.io/badge/Scss-CC6699?style=for-the-badge&logo=sass&logoColor=white
+[SCSS-url]: https://sass-lang.com/
+[Turborepo-logo]: https://img.shields.io/badge/turborepo-000000?style=for-the-badge&logo=turborepo&logoColor=white
+[Turborepo-url]: https://turbo.build/

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class HostnameInterceptor implements HttpInterceptor {
-  private apiHost: string = 'https://qkscqvcz-3000.euw.devtunnels.ms';
+  private apiHost: string = 'http://localhost:3000';
 
   private isNotApiRequest(req: HttpRequest<unknown>): boolean {
     return !req.url.startsWith('api') || !req.url.startsWith('/api');

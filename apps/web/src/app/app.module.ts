@@ -20,17 +20,19 @@ import { DashboardPageModule } from './pages/dashboard';
 import { DepartmentsPageModule } from './pages/departments';
 import { MembersPageModule } from './pages/members';
 import { ProfilePageModule } from './pages/profile';
-import { UsersPageModule } from './pages/users';
 import { WeaponsPageModule } from './pages/weapons';
 import { httpInterceptors } from './http-interceptors';
+import { AuthModule } from './services/auth';
+import { LoginPageModule } from './pages/login/login.page';
 const appModules = [
+  AuthModule,
   DefaultLayoutModule,
   DashboardPageModule,
   DepartmentsPageModule,
   MembersPageModule,
   ProfilePageModule,
-  UsersPageModule,
   WeaponsPageModule,
+  LoginPageModule,
 ];
 
 @NgModule({

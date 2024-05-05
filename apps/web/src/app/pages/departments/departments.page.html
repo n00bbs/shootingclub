@@ -1,1 +1,38 @@
-this departments
+<!-- anlegen, löschen, beitrag anpassen, farbe auswählen -->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Abteilungen</mat-card-title>
+    <mat-card-subtitle>Abteilungen des Vereins</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content *ngIf="departments" class="scroll-content" style="position: relative">
+    <mat-list class="department-list">
+      @for (department of departments; track department; let i = $index) {
+      <mat-list-item>
+        <mat-icon matListItemIcon fontIcon="home" />
+        <div matListItemTitle>
+          <div>{{ department.name }}</div>
+          <div>
+            <mat-form-field class="clearable-input-field">
+              <mat-label>Mitgliedsbeitrag (€)</mat-label>
+              <input #feeInput matInput type="number" [value]="department.fee/100"
+                (change)="updateDepartmentFee(department.id, feeInput.value)" />
+              @if (feeInput.value) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="feeInput.value='0'">
+                <mat-icon>close</mat-icon>
+              </button>
+              }
+            </mat-form-field>
+            <input matInput #colorInput type="color" [value]="'#'+department.color"
+              (change)="updateDepartmentColor(department.id, colorInput.value)" />
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-divider *ngIf="departments.length-1 !== i" />
+      }
+    </mat-list>
+    <div class="create-button-wrapper">
+      <button mat-button (click)="openCreateDialog()">Neu erstellen</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+<router-outlet />

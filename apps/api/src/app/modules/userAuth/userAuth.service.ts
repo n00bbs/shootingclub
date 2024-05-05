@@ -1,12 +1,12 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { auth } from '@repo/types';
+// import { userAuth } from '@repo/types';
 import { UserEntity } from '../../entities/user.entity';
 import { Repository } from 'typeorm';
 import { RoleEntity } from '../../entities/role.entity';
 
 @Injectable()
-export class AuthService {
+export class UserAuthService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
@@ -14,9 +14,7 @@ export class AuthService {
     private readonly roleRepository: Repository<RoleEntity>,
   ) {}
 
-  async login(
-    query: auth.login.QueryParams,
-  ): Promise<auth.login.ResponsePayload> {
+  async login(query: any): Promise<any> {
     const user = await this.userRepository.findOne({
       where: {
         email: query.email,
@@ -59,9 +57,7 @@ export class AuthService {
     return roles;
   }
 
-  async register(
-    payload: auth.register.RequestPayload,
-  ): Promise<auth.register.ResponsePayload> {
+  async register(payload: any): Promise<any> {
     const newUser = this.userRepository.create({
       birthDate: payload.birthdate,
       email: payload.username,

@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Neue Abteilung erstellen</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Mitgliedsbeitrag</mat-label>
+    <input matInput [(ngModel)]="fee" type="number" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Farbe</mat-label>
+    <input matInput [(ngModel)]="color" type="color" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Abbrechen</button>
+  <button mat-button (click)="onSave()" cdkFocusInitial>Speichern</button>
+</mat-dialog-actions>

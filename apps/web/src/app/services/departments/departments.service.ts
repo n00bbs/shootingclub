@@ -26,6 +26,32 @@ export class DepartmentsService {
       ),
     );
   }
+
+  updateDepartmentFee(id: string, fee: number) {
+    return lastValueFrom(
+      this.http.patch<departments.updateDepartmentFee.ResponsePayload>(
+        `${this.apiEndpoint}/updateDepartmentFee/${id}`,
+        { fee },
+      ),
+    );
+  }
+  updateDepartmentColor(id: string, color: string) {
+    return lastValueFrom(
+      this.http.patch<departments.updateDepartmentColor.ResponsePayload>(
+        `${this.apiEndpoint}/updateDepartmentColor/${id}`,
+        { color },
+      ),
+    );
+  }
+
+  createDepartment(name: string, fee: number, color: string) {
+    return lastValueFrom(
+      this.http.post<departments.createDepartment.ResponsePayload>(
+        `${this.apiEndpoint}/createDepartment`,
+        { name, fee, color },
+      ),
+    );
+  }
 }
 
 @NgModule({

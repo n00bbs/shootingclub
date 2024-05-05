@@ -8,8 +8,9 @@ import { UsersModule } from './modules/users/users.module';
 import { HttpLoggerMiddleware, TypeOrmLoggerContainer } from './logger';
 import { RouterModule } from '@nestjs/core';
 import { MembersModule } from './modules/members/members.module';
+import { DepartmentsModule } from './modules/departments/departments.module';
 
-const appModules = [UsersModule, MembersModule];
+const appModules = [UsersModule, MembersModule, DepartmentsModule];
 
 @Module({
   imports: [

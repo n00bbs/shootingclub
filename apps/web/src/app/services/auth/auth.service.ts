@@ -59,6 +59,13 @@ export class AuthService {
   logout() {
     this.setCredentials(undefined);
   }
+
+  getCredentials() {
+    if (!this.credentials) return undefined;
+    return {
+      ...this.credentials,
+    };
+  }
 }
 
 @NgModule({

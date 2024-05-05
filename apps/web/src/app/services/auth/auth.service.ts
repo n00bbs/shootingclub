@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, NgModule } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { userAuth } from '@repo/types';
 
 export interface Credentials {
   username: string;
@@ -9,9 +12,11 @@ export interface Credentials {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {
+  constructor(private http: HttpClient) {
     this.loadCredentialsFromStorage();
   }
+
+  private apiEndpoint = '/api/auth';
 
   private credentials?: Credentials;
   private roles: string[] = [];
@@ -47,13 +52,47 @@ export class AuthService {
   }
 
   async login(username: string, password: string) {
-    // TODO: Implement login
+    const query: userAuth.login.QueryParams = { email: username, password };
+
+    await lastValueFrom(
+      this.http.get<userAuth.login.ResponsePayload>(
+        `${this.apiEndpoint}/login`,
+        {
+          params: query as unknown as Record<string, string>,
+        },
+      ),
+    );
+
     this.setCredentials({ username, password });
     if (username === 'admin') {
       this.roles = ['admin', 'user'];
     } else {
       this.roles = ['user'];
     }
+  }
+
+  async register(
+    username: string,
+    password: string,
+    first_name: string,
+    last_name: string,
+    birthdate: Date,
+  ) {
+    const payload: userAuth.register.RequestPayload = {
+      username,
+      password,
+      first_name,
+      last_name,
+      birthdate,
+    };
+    const result = await lastValueFrom(
+      this.http.post<userAuth.register.ResponsePayload>(
+        `${this.apiEndpoint}/register`,
+        payload,
+      ),
+    );
+    this.setCredentials({ username, password });
+    this.roles = result.roles;
   }
 
   logout() {

@@ -1,4 +1,4 @@
-import { getAll } from '.';
+import { getAll } from './index.js';
 
 export interface RequestPayload {
   name: string;

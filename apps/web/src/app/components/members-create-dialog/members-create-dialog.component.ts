@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
+import { members } from '@repo/types';
 
 @Component({
   selector: 'app-members-create-dialog',
@@ -27,15 +28,15 @@ export class MembersCreateDialogComponent {
   last_name: string = '';
   birthdate: string = '';
 
-  hide = true;
-
   onSave() {
-    this.dialogRef.close({
+    const parsedDate = new Date(this.birthdate);
+    const payload: members.createMember.RequestPayload = {
       email: this.email,
       first_name: this.first_name,
       last_name: this.last_name,
-      birthdate: this.birthdate,
-    });
+      birthdate: parsedDate,
+    };
+    this.dialogRef.close(payload);
   }
 
   onCancel() {

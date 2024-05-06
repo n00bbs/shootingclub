@@ -168,4 +168,18 @@ export class MembersService {
       return true;
     }
   }
+
+  async createMember(
+    payload: members.createMember.RequestPayload,
+  ): Promise<members.createMember.ResponsePayload> {
+    const newMember = this.membersRepository.create({
+      email: payload.email,
+      firstName: payload.first_name,
+      lastName: payload.last_name,
+      birthDate: payload.birthdate,
+    });
+
+    await this.membersRepository.save(newMember);
+    return this.getAll();
+  }
 }

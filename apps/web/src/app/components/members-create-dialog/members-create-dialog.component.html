@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Neuen Nutzer erstellen</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="email" autocomplete="username" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Vorname</mat-label>
+    <input matInput [(ngModel)]="first_name" autocomplete="name" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Nachname</mat-label>
+    <input matInput [(ngModel)]="last_name" autocomplete="family-name" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Geburtsdatum</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="birthdate" autocomplete="bday" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Abbrechen</button>
+  <button mat-button (click)="onSave()" cdkFocusInitial
+    [disabled]="!email || !first_name || !last_name || !birthdate">Speichern</button>
+</mat-dialog-actions>

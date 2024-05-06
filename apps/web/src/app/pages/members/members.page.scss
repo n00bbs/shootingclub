@@ -10,6 +10,11 @@
     min-width: 300px;
   }
 
+  mat-card-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .scroll-content {
     overflow-y: auto;
   }

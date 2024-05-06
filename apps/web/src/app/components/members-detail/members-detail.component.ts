@@ -15,10 +15,7 @@ import { MembersService, MembersServiceModule } from '../../services/members';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  AttendanceCreateDialogComponent,
-  AttendanceCreateDialogComponentModule,
-} from '../attendance-create-dialog/attendance-create-dialog.component';
+import { AttendanceCreateDialogComponent } from '../attendance-create-dialog/attendance-create-dialog.component';
 
 @Component({
   selector: 'app-members-details',
@@ -83,6 +80,7 @@ export class MembersDetailComponent implements OnInit {
       });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   updateMember(field: keyof members.updateMember.RequestPayload, value: any) {
     if (!this.memberId) {
       throw new Error('No member ID provided');

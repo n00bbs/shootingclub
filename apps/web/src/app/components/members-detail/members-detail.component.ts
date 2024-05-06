@@ -14,6 +14,11 @@ import { OnInit } from '@angular/core';
 import { MembersService, MembersServiceModule } from '../../services/members';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  AttendanceCreateDialogComponent,
+  AttendanceCreateDialogComponentModule,
+} from '../attendance-create-dialog/attendance-create-dialog.component';
 
 @Component({
   selector: 'app-members-details',
@@ -24,7 +29,7 @@ export class MembersDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private membersService: MembersService,
-    private router: Router,
+    private dialog: MatDialog,
   ) {}
 
   private memberId?: string;
@@ -95,6 +100,26 @@ export class MembersDetailComponent implements OnInit {
   updateBirthdate(value: string) {
     const parsed = new Date(value);
     this.updateMember('birthdate', parsed);
+  }
+
+  createAttendance() {
+    if (!this.memberId) {
+      throw new Error('No member ID provided');
+    }
+    const dialogRef = this.dialog.open(AttendanceCreateDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!this.memberId) throw new Error('No member ID provided');
+      if (result) {
+        this.membersService
+          .createAttendance(this.memberId, result)
+          .then(() => {
+            this.loadMemberDetails();
+          })
+          .catch(() => {
+            this.loadMemberDetails();
+          });
+      }
+    });
   }
 }
 

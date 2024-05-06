@@ -27,3 +27,9 @@ export * as createMember from './createMember.js';
  * @path /api/users/updateUserDepartmentChange/:userId
  */
 export * as updateMember from './updateMember.js';
+
+/**
+ * @method POST
+ * @path /api/users/createAttendance/:userId
+ */
+export * as createAttendance from './createAttendance.js';

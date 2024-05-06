@@ -97,4 +97,22 @@ export class MembersController {
     const payload: members.updateMember.RequestPayload = req.body;
     return this.usersService.updateMember(userId, payload);
   }
+
+  @Post('createAttendance/:userId')
+  @DefaultAuthGuards()
+  createAttendance(
+    @Param('userId')
+    userId: string,
+    @Req() req,
+    @AuthenticatedUserRoles()
+    roles: string[],
+  ): Promise<members.createAttendance.ResponsePayload> {
+    if (!roles.includes('admin')) {
+      throw new UnauthorizedException(
+        "You don't have the required permissions to perform this action",
+      );
+    }
+    const payload: members.createAttendance.RequestPayload = req.body;
+    return this.usersService.createAttendance(userId, payload);
+  }
 }

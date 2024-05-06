@@ -8,6 +8,7 @@ import { UserDepartmentChangeEntity } from '../../entities/userDepartmentChange.
 import { DepartmentEntity } from '../../entities/department.entity';
 import { UserAddressEntity } from '../../entities/userAddress.entity';
 import { CityEntity } from '../../entities/city.entity';
+import { UserAttendanceEntity } from '../../entities/userAttendance.entity';
 
 @Injectable()
 export class MembersService {
@@ -22,6 +23,8 @@ export class MembersService {
     private readonly addressRepository: Repository<UserAddressEntity>,
     @InjectRepository(CityEntity)
     private readonly cityRepository: Repository<CityEntity>,
+    @InjectRepository(UserAttendanceEntity)
+    private readonly attendanceRepository: Repository<UserAttendanceEntity>,
   ) {}
 
   private calculateCurrentDepartments(
@@ -83,6 +86,7 @@ export class MembersService {
         address: {
           city: {},
         },
+        attendances: {},
       },
     });
     if (!result) {
@@ -120,6 +124,9 @@ export class MembersService {
           ),
         }),
       ),
+      attendances: result.attendances
+        .map((attendance) => attendance.date)
+        .sort(),
     };
   }
 
@@ -310,5 +317,31 @@ export class MembersService {
       });
     }
     return this.getOne(userId);
+  }
+
+  async createAttendance(
+    userId: string,
+    payload: members.createAttendance.RequestPayload,
+  ): Promise<members.createAttendance.ResponsePayload> {
+    const user = await this.membersRepository.findOne({
+      where: { id: userId },
+      relations: {
+        attendances: {},
+      },
+    });
+    if (!user) {
+      throw new Error('User not found');
+    }
+    const newAttendance = this.attendanceRepository.create({
+      user,
+      date: payload.date,
+    });
+    await this.attendanceRepository.save(newAttendance);
+    const attendances = await this.attendanceRepository.find({
+      where: { user: { id: userId } },
+    });
+    return {
+      attendances: attendances.map((attendance) => attendance.date),
+    };
   }
 }

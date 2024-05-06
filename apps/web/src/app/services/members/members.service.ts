@@ -56,6 +56,18 @@ export class MembersService {
       ),
     );
   }
+
+  createAttendance(
+    userId: string,
+    payload: members.createAttendance.RequestPayload,
+  ) {
+    return lastValueFrom(
+      this.http.post<members.createAttendance.ResponsePayload>(
+        `${this.apiEndpoint}/createAttendance/${userId}`,
+        payload,
+      ),
+    );
+  }
 }
 
 @NgModule({

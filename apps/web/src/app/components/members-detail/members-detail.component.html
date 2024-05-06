@@ -24,7 +24,7 @@
       <mat-label>Geburtsdatum</mat-label>
       <input matInput [matDatepicker]="picker" [value]="member?.birthdate" autocomplete="bday" #birthdate (change)="updateBirthdate(birthdate.value)" />
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker (closed)="updateBirthdate(birthdate.value)"></mat-datepicker>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Straße</mat-label>
@@ -40,7 +40,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Ort</mat-label>
-      <input matInput [value]="member?.address?.city?.name ?? ''" #street (change)="updateMember('city', street.value)"/>
+      <input matInput [value]="member?.address?.city?.name ?? ''" #city (change)="updateMember('city', city.value)"/>
     </mat-form-field>
     <div>
       <h3><b>Abteilungen</b></h3>
@@ -54,16 +54,16 @@
         }
       </mat-selection-list>
     </div>
-    <!-- <div>
+    <div>
       <h3><b>Anwesenheiten</b></h3>
       <mat-list [disabled]="loading">
         @for (attendance of member?.attendances; track $index) {
         <mat-list-item>
-          {{ attendance }}
+          {{ attendance | date: 'dd.MM.yyyy'}}
         </mat-list-item>
         }
       </mat-list>
-      <button mat-button>Anwesenheit hinzufügen</button>
+      <button mat-button (click)="createAttendance()">Anwesenheit hinzufügen</button>
     </div>
   </mat-card-content>
 </mat-card>

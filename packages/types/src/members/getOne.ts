@@ -27,5 +27,5 @@ export interface ResponsePayload {
 
   updateHash: string;
   departments: Department[];
-  attendances?: Date[];
+  attendances: Date[];
 }

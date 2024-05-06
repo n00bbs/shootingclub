@@ -20,22 +20,17 @@ import { members } from '@repo/types';
   templateUrl: './attendance-create-dialog.component.html',
   styleUrls: ['./attendance-create-dialog.component.scss'],
 })
-export class MembersCreateDialogComponent {
-  constructor(private dialogRef: MatDialogRef<MembersCreateDialogComponent>) {}
+export class AttendanceCreateDialogComponent {
+  constructor(
+    private dialogRef: MatDialogRef<AttendanceCreateDialogComponent>,
+  ) {}
 
-  email: string = '';
-  first_name: string = '';
-  last_name: string = '';
-  birthdate: string = '';
   attendance: string = '';
 
   onSave() {
-    const parsedDate = new Date(this.birthdate);
-    const payload: members.createMember.RequestPayload = {
-      email: this.email,
-      first_name: this.first_name,
-      last_name: this.last_name,
-      birthdate: parsedDate,
+    const parsedDate = new Date(this.attendance);
+    const payload: members.createAttendance.RequestPayload = {
+      date: parsedDate,
     };
     this.dialogRef.close(payload);
   }
@@ -59,7 +54,7 @@ export class MembersCreateDialogComponent {
     MatDatepickerModule,
     MatIcon,
   ],
-  declarations: [MembersCreateDialogComponent],
-  exports: [MembersCreateDialogComponent],
+  declarations: [AttendanceCreateDialogComponent],
+  exports: [AttendanceCreateDialogComponent],
 })
-export class MembersCreateDialogComponentModule {}
+export class AttendanceCreateDialogComponentModule {}

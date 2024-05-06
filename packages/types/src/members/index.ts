@@ -33,3 +33,9 @@ export * as updateMember from './updateMember.js';
  * @path /api/users/createAttendance/:userId
  */
 export * as createAttendance from './createAttendance.js';
+
+/**
+ * @method DELETE
+ * @path /api/users/deleteMember/:userId
+ */
+export * as deleteMember from './deleteMember.js';

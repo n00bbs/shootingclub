@@ -68,6 +68,14 @@ export class MembersService {
       ),
     );
   }
+
+  deleteMember(id: string) {
+    return lastValueFrom(
+      this.http.delete<members.deleteMember.ResponsePayload>(
+        `${this.apiEndpoint}/deleteMember/${id}`,
+      ),
+    );
+  }
 }
 
 @NgModule({

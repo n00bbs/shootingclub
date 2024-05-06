@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MembersService, MembersServiceModule } from '../../services/members';
 import { MatDialog } from '@angular/material/dialog';
 import { MembersCreateDialogComponent } from '../../components/members-create-dialog/members-create-dialog.component';
@@ -21,6 +21,7 @@ export class MembersPageComponent implements OnInit {
   constructor(
     private membersService: MembersService,
     private dialogService: MatDialog,
+    private router: Router,
   ) {}
   members?: members.getAll.Member[];
 
@@ -37,6 +38,7 @@ export class MembersPageComponent implements OnInit {
         if (!result) return;
         this.membersService.createMember(result).then((result) => {
           this.members = result.data;
+          this.router.navigate(['/members', result.newMemberId]);
         });
       },
     );

@@ -13,7 +13,9 @@ export class UserDepartmentChangeEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.departmentChanges)
+  @ManyToOne(() => UserEntity, (user) => user.departmentChanges, {
+    onDelete: 'CASCADE',
+  })
   user: UserEntity;
 
   @ManyToOne(() => DepartmentEntity)

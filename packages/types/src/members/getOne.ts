@@ -28,4 +28,5 @@ export interface ResponsePayload {
   updateHash: string;
   departments: Department[];
   attendances: Date[];
+  isAllowedToBuyAmmo: boolean;
 }

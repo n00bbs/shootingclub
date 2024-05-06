@@ -16,7 +16,9 @@ export class UserAddressEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @OneToMany(() => UserEntity, (user) => user.address)
+  @OneToMany(() => UserEntity, (user) => user.address, {
+    onDelete: 'CASCADE',
+  })
   users: UserAddressEntity[];
 
   @Column({ type: 'varchar', length: 128, nullable: false })

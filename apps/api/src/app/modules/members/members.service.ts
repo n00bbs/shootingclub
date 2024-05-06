@@ -127,6 +127,7 @@ export class MembersService {
       attendances: result.attendances
         .map((attendance) => attendance.date)
         .sort(),
+      isAllowedToBuyAmmo: await this.memberIsAllowedToBuyAmmo(result.id),
     };
   }
 
@@ -171,7 +172,7 @@ export class MembersService {
       },
     });
     if (!user) {
-      throw new Error('User not found');
+      return false;
     }
     const attendances = user.attendances;
     if (attendances.length >= 18) {
@@ -223,7 +224,10 @@ export class MembersService {
     });
 
     await this.membersRepository.save(newMember);
-    return this.getAll();
+    return {
+      ...(await this.getAll()),
+      newMemberId: newMember.id,
+    };
   }
 
   private async createAdress() {
@@ -343,5 +347,18 @@ export class MembersService {
     return {
       attendances: attendances.map((attendance) => attendance.date),
     };
+  }
+
+  async deleteMember(
+    id: string,
+  ): Promise<members.deleteMember.ResponsePayload> {
+    const user = await this.membersRepository.findOne({
+      where: { id },
+    });
+    if (!user) {
+      throw new Error('User not found');
+    }
+    await this.membersRepository.delete(id);
+    return {};
   }
 }

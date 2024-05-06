@@ -30,6 +30,7 @@ export class MembersDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private membersService: MembersService,
     private dialog: MatDialog,
+    private router: Router,
   ) {}
 
   private memberId?: string;
@@ -119,6 +120,18 @@ export class MembersDetailComponent implements OnInit {
             this.loadMemberDetails();
           });
       }
+    });
+  }
+
+  async deleteMember() {
+    if (!this.memberId) {
+      throw new Error('No member ID provided');
+    }
+    this.loading = true;
+    await this.membersService.deleteMember(this.memberId);
+    this.loading = false;
+    this.router.navigate(['/']).then(() => {
+      this.router.navigate(['/members']);
     });
   }
 }

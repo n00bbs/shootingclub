@@ -4,6 +4,7 @@
       Benutzer bearbeiten
     </mat-card-title>
     <mat-card-subtitle>
+      Dieser Benutzer darf {{member?.isAllowedToBuyAmmo ? 'Munition kaufen' : 'keine Munition kaufen'}}
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="grid">
@@ -66,4 +67,7 @@
       <button mat-button (click)="createAttendance()">Anwesenheit hinzufügen</button>
     </div>
   </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="deleteMember()">Benutzer löschen</button>
+  </mat-card-actions>
 </mat-card>

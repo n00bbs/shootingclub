@@ -1,5 +1,6 @@
 import {
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -114,5 +115,21 @@ export class MembersController {
     }
     const payload: members.createAttendance.RequestPayload = req.body;
     return this.usersService.createAttendance(userId, payload);
+  }
+
+  @Delete('deleteMember/:userId')
+  @DefaultAuthGuards()
+  deleteMember(
+    @Param('userId')
+    userId: string,
+    @AuthenticatedUserRoles()
+    roles: string[],
+  ): Promise<members.deleteMember.ResponsePayload> {
+    if (!roles.includes('admin')) {
+      throw new UnauthorizedException(
+        "You don't have the required permissions to perform this action",
+      );
+    }
+    return this.usersService.deleteMember(userId);
   }
 }

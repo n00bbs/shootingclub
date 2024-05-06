@@ -56,14 +56,13 @@
     <div>
       <h3><b>Anwesenheiten</b></h3>
       <mat-list [disabled]="loading">
-        @for (department of member?.departments; track $index) {
-        <mat-list-option [selected]="department.joined" (selectedChange)="onDepartmentChange(department.id, $event)">
-          <div style="height: 1rem; width: 1rem; display: inline-block; border-radius: 50%; line-height: 1rem;"
-            [style.background-color]="'#' + department.color"></div>
-          {{ department.name }}
-        </mat-list-option>
+        @for (attendance of member?.attendances; track $index) {
+        <mat-list-item>
+          {{ attendance }}
+        </mat-list-item>
         }
       </mat-list>
+      <button mat-button>Anwesenheit hinzufügen</button>
     </div>
   </mat-card-content>
   <!-- <mat-card-actions align="end">

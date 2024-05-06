@@ -36,7 +36,7 @@ export class UserEntity {
   @ManyToOne(() => RoleEntity)
   role: RoleEntity;
 
-  @Column({ type: 'varchar', length: 64, nullable: false })
+  @Column({ type: 'varchar', length: 64, nullable: true })
   passwordHash: string;
 
   @CreateDateColumn({ type: 'timestamp with time zone', nullable: false })

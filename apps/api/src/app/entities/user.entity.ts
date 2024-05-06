@@ -11,6 +11,7 @@ import {
 import { RoleEntity } from './role.entity';
 import { UserAddressEntity } from './userAddress.entity';
 import { UserDepartmentChangeEntity } from './userDepartmentChange.entity';
+import { UserAttendanceEntity } from './userAttendance.entity';
 
 @Entity()
 export class UserEntity {
@@ -46,4 +47,7 @@ export class UserEntity {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => UserAttendanceEntity, (attendance) => attendance.user)
+  attendances: UserAttendanceEntity[];
 }

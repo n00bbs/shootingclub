@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Between, IsNull, Or, Repository } from 'typeorm';
 import { UserEntity } from '../../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { members } from '@repo/types';
@@ -127,5 +127,45 @@ export class MembersService {
     return {
       success: true,
     };
+  }
+
+  async memberIsAllowedToBuyAmmo(userId: string): Promise<boolean> {
+    const oneYearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
+
+    const user = await this.membersRepository.findOne({
+      where: {
+        id: userId,
+        attendances: {
+          date: Or(Between(oneYearAgo, new Date()), IsNull()),
+        },
+      },
+      relations: {
+        attendances: {},
+      },
+    });
+    if (!user) {
+      throw new Error('User not found');
+    }
+    const attendances = user.attendances;
+    if (attendances.length >= 18) {
+      return true;
+    } else {
+      for (let month = 0; month < 12; month++) {
+        const monthAgo = new Date(
+          Date.now() - month * 30 * 24 * 60 * 60 * 1000,
+        );
+        const monthEndAgo = new Date(
+          Date.now() - (month + 1) * 30 * 24 * 60 * 60 * 1000,
+        );
+        const attendancesInMonth = attendances.filter(
+          (attendance) =>
+            attendance.date > monthEndAgo && attendance.date < monthAgo,
+        );
+        if (attendancesInMonth.length < 1) {
+          return false;
+        }
+      }
+      return true;
+    }
   }
 }

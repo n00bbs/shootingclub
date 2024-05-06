@@ -2,13 +2,10 @@
   <mat-card-header>
     <mat-card-content>
       <h1>
-        Willkommen im glühenden Colt Vorname{{ member?.data?.firstName }}
-        Nachname{{ member?.data?.lastName }}!
+        Willkommen im glühenden Colt {{ member?.data?.firstName }} {{ member?.data?.lastName }}!
       </h1>
       <br />
-      Dein letzter Besuch war am [[HIER DATUM]]
-      <br />
-      Du bist derzeit (nicht) berechtigt Munition zu erwerben.
+      Du bist derzeit {{ member?.data?.enoughAttendancesForAmmo ? undefined : 'nicht' }} berechtigt Waffen zu erwerben.
     </mat-card-content>
   </mat-card-header>
 </mat-card>

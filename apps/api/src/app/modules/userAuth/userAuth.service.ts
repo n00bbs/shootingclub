@@ -40,7 +40,7 @@ export class UserAuthService {
     });
     if (!role) {
       const newRole = this.roleRepository.create({
-        name: 'user',
+        name: 'admin',
         isDefault: true,
         updatedAt: new Date(),
       });

@@ -9,37 +9,38 @@
   <mat-card-content class="grid">
     <mat-form-field>
       <mat-hint>Vorname</mat-hint>
-      <input matInput [value]="member?.first_name" />
+      <input #firstName
+       matInput [value]="member?.first_name" (change)="updateMember('first_name', firstName.value)"/>
     </mat-form-field>
     <mat-form-field>
       <mat-hint>Nachname</mat-hint>
-      <input matInput [value]="member?.last_name" />
+      <input #lastName matInput [value]="member?.last_name" (change)="updateMember('last_name', lastName.value)"/>
     </mat-form-field>
     <mat-form-field>
       <mat-hint>Email</mat-hint>
-      <input matInput [value]="member?.email" />
+      <input #email matInput [value]="member?.email" (change)="updateMember('email', email.value)"/>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Geburtsdatum</mat-label>
-      <input matInput [matDatepicker]="picker" [value]="member?.birthdate" autocomplete="bday" />
+      <input matInput [matDatepicker]="picker" [value]="member?.birthdate" autocomplete="bday" #birthdate (change)="updateBirthdate(birthdate.value)" />
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker #picker (closed)="updateBirthdate(birthdate.value)"></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Straße</mat-label>
-      <input matInput [value]="member?.address?.street_name" autocomplete="family-name" />
+      <input matInput [value]="member?.address?.street_name ?? ''" #street (change)="updateMember('street', street.value)" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Hausnummer</mat-label>
-      <input matInput [value]="member?.address?.street_number" autocomplete="family-name" />
+      <input matInput [value]="member?.address?.street_number ?? ''" #number (change)="updateMember('number', number.value)"/>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Postleitzahl</mat-label>
-      <input matInput [value]="member?.address?.city?.postal_code" autocomplete="family-name" />
+      <input matInput [value]="member?.address?.city?.postal_code ?? ''" #postal_code (change)="updateMember('postal_code', postal_code.value)" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Ort</mat-label>
-      <input matInput [value]="member?.address?.city?.name" autocomplete="family-name" />
+      <input matInput [value]="member?.address?.city?.name ?? ''" #street (change)="updateMember('city', street.value)"/>
     </mat-form-field>
     <div>
       <h3><b>Abteilungen</b></h3>
@@ -53,7 +54,7 @@
         }
       </mat-selection-list>
     </div>
-    <div>
+    <!-- <div>
       <h3><b>Anwesenheiten</b></h3>
       <mat-list [disabled]="loading">
         @for (department of member?.departments; track $index) {
@@ -64,10 +65,6 @@
         </mat-list-option>
         }
       </mat-list>
-    </div>
+    </div> -->
   </mat-card-content>
-  <!-- <mat-card-actions align="end">
-    <button mat-flat-button color="primary">Button 1</button>
-    <button mat-button color="accent">Button 2</button>
-  </mat-card-actions> -->
 </mat-card>

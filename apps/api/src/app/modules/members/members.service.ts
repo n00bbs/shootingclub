@@ -6,6 +6,8 @@ import { members } from '@repo/types';
 import { hashDate } from '../../util/hashDate';
 import { UserDepartmentChangeEntity } from '../../entities/userDepartmentChange.entity';
 import { DepartmentEntity } from '../../entities/department.entity';
+import { UserAddressEntity } from '../../entities/userAddress.entity';
+import { CityEntity } from '../../entities/city.entity';
 
 @Injectable()
 export class MembersService {
@@ -16,6 +18,10 @@ export class MembersService {
     private readonly departmentRepository: Repository<DepartmentEntity>,
     @InjectRepository(UserDepartmentChangeEntity)
     private readonly departmentChangeRepository: Repository<UserDepartmentChangeEntity>,
+    @InjectRepository(UserAddressEntity)
+    private readonly addressRepository: Repository<UserAddressEntity>,
+    @InjectRepository(CityEntity)
+    private readonly cityRepository: Repository<CityEntity>,
   ) {}
 
   private calculateCurrentDepartments(
@@ -73,6 +79,9 @@ export class MembersService {
       relations: {
         departmentChanges: {
           department: {},
+        },
+        address: {
+          city: {},
         },
       },
     });
@@ -183,14 +192,123 @@ export class MembersService {
   async createMember(
     payload: members.createMember.RequestPayload,
   ): Promise<members.createMember.ResponsePayload> {
+    const newCity = this.cityRepository.create({
+      name: '',
+      postalCode: '',
+    });
+
+    const savedCity = await this.cityRepository.save(newCity);
+
+    const newAdress = this.addressRepository.create({
+      streetName: '',
+      streetNumber: '',
+      city: savedCity,
+    });
+
+    const savedAddress = await this.addressRepository.save(newAdress);
+
     const newMember = this.membersRepository.create({
       email: payload.email,
       firstName: payload.first_name,
       lastName: payload.last_name,
       birthDate: payload.birthdate,
+      address: savedAddress,
     });
 
     await this.membersRepository.save(newMember);
     return this.getAll();
+  }
+
+  private async createAdress() {
+    const newCity = this.cityRepository.create({
+      name: '',
+      postalCode: '',
+    });
+
+    const savedCity = await this.cityRepository.save(newCity, { reload: true });
+    const city = await this.cityRepository.findOne({
+      where: { id: savedCity.id },
+    });
+
+    if (!city) throw new Error('City not found');
+
+    const newAdress = this.addressRepository.create({
+      streetName: '',
+      streetNumber: '',
+      city: savedCity,
+    });
+
+    const savedAdress = await this.addressRepository.save(newAdress, {
+      reload: true,
+    });
+    return await this.addressRepository.findOne({
+      where: { id: savedAdress.id },
+    });
+  }
+
+  async updateMember(
+    userId: string,
+    payload: members.updateMember.RequestPayload,
+  ): Promise<members.updateMember.ResponsePayload> {
+    console.log('update member', payload);
+    let user = await this.membersRepository.findOne({
+      where: { id: userId },
+      relations: {
+        address: {
+          city: {},
+        },
+      },
+    });
+    if (!user) {
+      throw new Error('User not found');
+    }
+    console.log('user', user);
+    if (!user.address || !user.address.city) {
+      const newAddress = await this.createAdress();
+      await this.membersRepository.update(userId, {
+        address: newAddress,
+      });
+      user = await this.membersRepository.findOne({
+        where: { id: userId },
+        relations: {
+          address: {
+            city: {},
+          },
+        },
+      });
+    }
+    if (payload.email) {
+      this.membersRepository.update(userId, { email: payload.email });
+    }
+    if (payload.first_name) {
+      this.membersRepository.update(userId, { firstName: payload.first_name });
+    }
+    if (payload.last_name) {
+      this.membersRepository.update(userId, { lastName: payload.last_name });
+    }
+    if (payload.birthdate) {
+      this.membersRepository.update(userId, { birthDate: payload.birthdate });
+    }
+    if (payload.street) {
+      this.addressRepository.update(user.address.id, {
+        streetName: payload.street,
+      });
+    }
+    if (payload.number) {
+      this.addressRepository.update(user.address.id, {
+        streetNumber: payload.number,
+      });
+    }
+    if (payload.city) {
+      this.cityRepository.update(user.address.city.id, {
+        name: payload.city,
+      });
+    }
+    if (payload.postal_code) {
+      this.cityRepository.update(user.address.city.id, {
+        postalCode: payload.postal_code,
+      });
+    }
+    return this.getOne(userId);
   }
 }

@@ -76,6 +76,26 @@ export class MembersDetailComponent implements OnInit {
         this.loading = false;
       });
   }
+
+  updateMember(field: keyof members.updateMember.RequestPayload, value: any) {
+    if (!this.memberId) {
+      throw new Error('No member ID provided');
+    }
+    this.membersService
+      .updateMember(this.memberId, { [field]: value })
+      .then((result) => {
+        this.member = result;
+        this.birthdate = result.birthdate.toLocaleDateString();
+      })
+      .catch(() => {
+        this.loadMemberDetails();
+      });
+  }
+
+  updateBirthdate(value: string) {
+    const parsed = new Date(value);
+    this.updateMember('birthdate', parsed);
+  }
 }
 
 @NgModule({

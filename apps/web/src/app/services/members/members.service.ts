@@ -47,6 +47,15 @@ export class MembersService {
       ),
     );
   }
+
+  updateMember(id: string, payload: members.updateMember.RequestPayload) {
+    return lastValueFrom(
+      this.http.patch<members.updateMember.ResponsePayload>(
+        `${this.apiEndpoint}/updateMember/${id}`,
+        payload,
+      ),
+    );
+  }
 }
 
 @NgModule({

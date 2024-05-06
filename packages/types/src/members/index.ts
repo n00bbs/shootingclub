@@ -21,3 +21,9 @@ export * as createUserDepartmentChange from './createUserDepartmentChange.js';
  * @path /api/users/createUserDepartmentChange/:userId
  */
 export * as createMember from './createMember.js';
+
+/**
+ * @method PATCH
+ * @path /api/users/updateUserDepartmentChange/:userId
+ */
+export * as updateMember from './updateMember.js';

@@ -3,6 +3,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -15,9 +16,8 @@ export class UserAddressEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @OneToOne(() => UserEntity, (user) => user.address)
-  @JoinColumn()
-  user: UserAddressEntity;
+  @OneToMany(() => UserEntity, (user) => user.address)
+  users: UserAddressEntity[];
 
   @Column({ type: 'varchar', length: 128, nullable: false })
   streetName: string;

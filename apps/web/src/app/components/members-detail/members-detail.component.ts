@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { OnInit } from '@angular/core';
 import { MembersService, MembersServiceModule } from '../../services/members';
-import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-members-details',

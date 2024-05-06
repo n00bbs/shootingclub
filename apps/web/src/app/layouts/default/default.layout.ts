@@ -32,11 +32,6 @@ const sidebarElements: SidebarElement[] = [
     label: 'Mitglieder',
     routerLink: 'members',
   },
-  {
-    id: 'weapons',
-    label: 'Waffen',
-    routerLink: 'weapons',
-  },
 ];
 
 @Component({

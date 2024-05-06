@@ -5,7 +5,7 @@
     </mat-card-title>
     <mat-card-subtitle>
       Dieser Benutzer darf {{member?.isAllowedToBuyAmmo ? 'Munition kaufen' : 'keine Munition kaufen'}} <br>
-      Dieser Benutzer hat derzeit einen jahresbeitrag von {{member?.feeInLastYear}}€
+      Dieser Benutzer hat derzeit einen jahresbeitrag von {{member?.feeInLastYear / 100}}€
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="grid">

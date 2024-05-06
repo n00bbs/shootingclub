@@ -22,6 +22,7 @@ export interface ResponsePayload {
   email: string;
   first_name: string;
   last_name: string;
+  birthdate: Date;
   address: UserAddress;
 
   updateHash: string;

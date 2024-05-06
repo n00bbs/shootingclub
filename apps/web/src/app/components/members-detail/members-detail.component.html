@@ -8,18 +8,41 @@
   </mat-card-header>
   <mat-card-content class="grid">
     <mat-form-field>
-      <mat-hint>Benutzername</mat-hint>
-      <input matInput [value]="member?.name" />
+      <mat-hint>Vorname</mat-hint>
+      <input matInput [value]="member?.first_name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-hint>Nachname</mat-hint>
+      <input matInput [value]="member?.last_name" />
     </mat-form-field>
     <mat-form-field>
       <mat-hint>Email</mat-hint>
       <input matInput [value]="member?.email" />
     </mat-form-field>
     <mat-form-field>
-      <mat-hint>Vorname</mat-hint>
-      <input matInput [value]="member?." />
+      <mat-label>Geburtsdatum</mat-label>
+      <input matInput [matDatepicker]="picker" [value]="member?.birthdate" autocomplete="bday" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Straße</mat-label>
+      <input matInput [value]="member?.address?.street_name" autocomplete="family-name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Hausnummer</mat-label>
+      <input matInput [value]="member?.address?.street_number" autocomplete="family-name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Postleitzahl</mat-label>
+      <input matInput [value]="member?.address?.city?.postal_code" autocomplete="family-name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ort</mat-label>
+      <input matInput [value]="member?.address?.city?.name" autocomplete="family-name" />
     </mat-form-field>
     <div>
+      <h3><b>Abteilungen</b></h3>
       <mat-selection-list [disabled]="loading">
         @for (department of member?.departments; track $index) {
         <mat-list-option [selected]="department.joined" (selectedChange)="onDepartmentChange(department.id, $event)">
@@ -29,6 +52,18 @@
         </mat-list-option>
         }
       </mat-selection-list>
+    </div>
+    <div>
+      <h3><b>Anwesenheiten</b></h3>
+      <mat-list [disabled]="loading">
+        @for (department of member?.departments; track $index) {
+        <mat-list-option [selected]="department.joined" (selectedChange)="onDepartmentChange(department.id, $event)">
+          <div style="height: 1rem; width: 1rem; display: inline-block; border-radius: 50%; line-height: 1rem;"
+            [style.background-color]="'#' + department.color"></div>
+          {{ department.name }}
+        </mat-list-option>
+        }
+      </mat-list>
     </div>
   </mat-card-content>
   <!-- <mat-card-actions align="end">

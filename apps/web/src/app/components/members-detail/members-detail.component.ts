@@ -13,6 +13,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { OnInit } from '@angular/core';
 import { MembersService, MembersServiceModule } from '../../services/members';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-members-details',
@@ -30,6 +31,7 @@ export class MembersDetailComponent implements OnInit {
 
   loading = true;
   member?: members.getOne.ResponsePayload;
+  birthdate?: string;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -46,6 +48,7 @@ export class MembersDetailComponent implements OnInit {
       .getOne(this.memberId)
       .then((member) => {
         this.member = member;
+        this.birthdate = member.birthdate.toLocaleDateString();
         this.loading = false;
       })
       .catch(() => {
@@ -88,6 +91,7 @@ export class MembersDetailComponent implements OnInit {
     MatGridListModule,
     MatSelectModule,
     MatInputModule,
+    MatDatepickerModule,
   ],
   declarations: [MembersDetailComponent],
   exports: [MembersDetailComponent],

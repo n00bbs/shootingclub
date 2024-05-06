@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Between, IsNull, LessThan, MoreThan, Or, Repository } from 'typeorm';
+import { Between, IsNull, Or, Repository } from 'typeorm';
 import { UserEntity } from '../../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { members } from '@repo/types';

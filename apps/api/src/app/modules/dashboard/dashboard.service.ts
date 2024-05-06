@@ -1,4 +1,4 @@
-import { Injectable, Query } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { dashboard } from '@repo/types';
 import { UserEntity } from '../../entities/user.entity';
 import { Repository } from 'typeorm';

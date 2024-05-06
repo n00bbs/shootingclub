@@ -5,10 +5,25 @@ export interface Department {
   color: string;
 }
 
-export interface ResponsePayload {
+export interface City {
   id: string;
   name: string;
+  postal_code: string;
+}
+
+export interface UserAddress {
+  street_name: string;
+  street_number: string;
+  city: City;
+}
+
+export interface ResponsePayload {
+  id: string;
   email: string;
+  first_name: string;
+  last_name: string;
+  address: UserAddress;
+
   updateHash: string;
   departments: Department[];
 }

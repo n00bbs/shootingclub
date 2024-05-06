@@ -87,8 +87,18 @@ export class MembersService {
 
     return {
       id: result.id,
-      name: `${result.firstName} ${result.lastName}`,
+      first_name: `${result.firstName}`,
+      last_name: `${result.lastName}`,
       email: result.email,
+      address: {
+        street_name: result.address.streetName,
+        street_number: result.address.streetNumber,
+        city: {
+          id: result.address.city.id,
+          name: result.address.city.name,
+          postal_code: result.address.city.postalCode,
+        },
+      },
       updateHash: hashDate(result.updatedAt),
       departments: allDepartments.map(
         (department): members.getOne.Department => ({

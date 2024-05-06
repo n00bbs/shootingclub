@@ -1,19 +1,24 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      <mat-form-field>
-        <mat-hint>Benutzername</mat-hint>
-        <input matInput [value]="member?.name" />
-      </mat-form-field>
+      Benutzer bearbeiten
     </mat-card-title>
     <mat-card-subtitle>
-      <mat-form-field>
-        <mat-hint>Email</mat-hint>
-        <input matInput [value]="member?.email" />
-      </mat-form-field>
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="grid">
+    <mat-form-field>
+      <mat-hint>Benutzername</mat-hint>
+      <input matInput [value]="member?.name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-hint>Email</mat-hint>
+      <input matInput [value]="member?.email" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-hint>Vorname</mat-hint>
+      <input matInput [value]="member?." />
+    </mat-form-field>
     <div>
       <mat-selection-list [disabled]="loading">
         @for (department of member?.departments; track $index) {

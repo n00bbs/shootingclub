@@ -128,6 +128,7 @@ export class MembersService {
         .map((attendance) => attendance.date)
         .sort(),
       isAllowedToBuyAmmo: await this.memberIsAllowedToBuyAmmo(result.id),
+      feeInLastYear: await this.calculateYearlyFee(result.id),
     };
   }
 
@@ -360,5 +361,34 @@ export class MembersService {
     }
     await this.membersRepository.delete(id);
     return {};
+  }
+
+  private async calculateYearlyFee(userId: string): Promise<number> {
+    const oneYearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
+    const user = await this.membersRepository.findOne({
+      where: {
+        id: userId,
+        departmentChanges: {
+          createdAt: Between(oneYearAgo, new Date()),
+        },
+      },
+      relations: {
+        departmentChanges: {
+          department: {},
+        },
+      },
+    });
+
+    if (!user) {
+      return 0;
+    }
+
+    let fee = 0;
+
+    user.departmentChanges.forEach((change) => {
+      fee += change.department.fee;
+    });
+
+    return fee;
   }
 }

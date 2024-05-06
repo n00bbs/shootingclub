@@ -29,4 +29,5 @@ export interface ResponsePayload {
   departments: Department[];
   attendances: Date[];
   isAllowedToBuyAmmo: boolean;
+  feeInLastYear: number;
 }

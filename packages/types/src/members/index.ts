@@ -15,3 +15,9 @@ export * as getOne from './getOne.js';
  * @path /api/users/createUserDepartmentChange/:userId
  */
 export * as createUserDepartmentChange from './createUserDepartmentChange.js';
+
+/**
+ * @method POST
+ * @path /api/users/createUserDepartmentChange/:userId
+ */
+export * as createMember from './createMember.js';

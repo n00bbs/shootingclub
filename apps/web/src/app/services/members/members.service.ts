@@ -38,6 +38,15 @@ export class MembersService {
       ),
     );
   }
+
+  createMember(payload: members.createMember.RequestPayload) {
+    return lastValueFrom(
+      this.http.post<members.createMember.ResponsePayload>(
+        `${this.apiEndpoint}/createMember`,
+        payload,
+      ),
+    );
+  }
 }
 
 @NgModule({

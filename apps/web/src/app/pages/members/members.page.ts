@@ -32,7 +32,14 @@ export class MembersPageComponent implements OnInit {
 
   openCreateDialog() {
     const dialogRef = this.dialogService.open(MembersCreateDialogComponent);
-    lastValueFrom(dialogRef.afterClosed()).then(() => {});
+    lastValueFrom(dialogRef.afterClosed()).then(
+      (result?: members.createMember.RequestPayload) => {
+        if (!result) return;
+        this.membersService.createMember(result).then((result) => {
+          this.members = result.data;
+        });
+      },
+    );
   }
 
   getChipsStyle(department: members.getAll.Department): string {

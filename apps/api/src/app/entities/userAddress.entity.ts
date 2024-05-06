@@ -1,9 +1,8 @@
 import {
   Column,
   Entity,
-  JoinColumn,
   ManyToOne,
-  OneToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -15,9 +14,10 @@ export class UserAddressEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @OneToOne(() => UserEntity, (user) => user.address)
-  @JoinColumn()
-  user: UserAddressEntity;
+  @OneToMany(() => UserEntity, (user) => user.address, {
+    onDelete: 'CASCADE',
+  })
+  users: UserAddressEntity[];
 
   @Column({ type: 'varchar', length: 128, nullable: false })
   streetName: string;

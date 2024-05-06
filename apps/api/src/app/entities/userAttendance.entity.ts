@@ -12,7 +12,9 @@ export class UserAttendanceEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => UserEntity)
+  @ManyToOne(() => UserEntity, (user) => user.attendances, {
+    onDelete: 'CASCADE',
+  })
   user: UserEntity;
 
   @Column({ type: 'timestamp with time zone', nullable: false })

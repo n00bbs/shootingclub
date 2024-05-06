@@ -4,7 +4,6 @@ import {
   Entity,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -42,7 +41,7 @@ export class UserEntity {
   @CreateDateColumn({ type: 'timestamp with time zone', nullable: false })
   joinedAt: Date;
 
-  @OneToOne(() => UserAddressEntity, (address) => address.user)
+  @ManyToOne(() => UserAddressEntity, (address) => address.users)
   address: UserAddressEntity;
 
   @UpdateDateColumn()

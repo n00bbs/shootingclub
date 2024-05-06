@@ -1,7 +1,9 @@
 import {
   Controller,
+  Delete,
   Get,
   Param,
+  Patch,
   Post,
   Req,
   UnauthorizedException,
@@ -77,5 +79,57 @@ export class MembersController {
     }
     const payload: members.createMember.RequestPayload = req.body;
     return this.usersService.createMember(payload);
+  }
+
+  @Patch('updateMember/:userId')
+  @DefaultAuthGuards()
+  updateMember(
+    @Param('userId')
+    userId: string,
+    @Req() req,
+    @AuthenticatedUserRoles()
+    roles: string[],
+  ): Promise<members.updateMember.ResponsePayload> {
+    if (!roles.includes('admin')) {
+      throw new UnauthorizedException(
+        "You don't have the required permissions to perform this action",
+      );
+    }
+    const payload: members.updateMember.RequestPayload = req.body;
+    return this.usersService.updateMember(userId, payload);
+  }
+
+  @Post('createAttendance/:userId')
+  @DefaultAuthGuards()
+  createAttendance(
+    @Param('userId')
+    userId: string,
+    @Req() req,
+    @AuthenticatedUserRoles()
+    roles: string[],
+  ): Promise<members.createAttendance.ResponsePayload> {
+    if (!roles.includes('admin')) {
+      throw new UnauthorizedException(
+        "You don't have the required permissions to perform this action",
+      );
+    }
+    const payload: members.createAttendance.RequestPayload = req.body;
+    return this.usersService.createAttendance(userId, payload);
+  }
+
+  @Delete('deleteMember/:userId')
+  @DefaultAuthGuards()
+  deleteMember(
+    @Param('userId')
+    userId: string,
+    @AuthenticatedUserRoles()
+    roles: string[],
+  ): Promise<members.deleteMember.ResponsePayload> {
+    if (!roles.includes('admin')) {
+      throw new UnauthorizedException(
+        "You don't have the required permissions to perform this action",
+      );
+    }
+    return this.usersService.deleteMember(userId);
   }
 }

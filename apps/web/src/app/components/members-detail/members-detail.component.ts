@@ -13,6 +13,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { OnInit } from '@angular/core';
 import { MembersService, MembersServiceModule } from '../../services/members';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
+import { AttendanceCreateDialogComponent } from '../attendance-create-dialog/attendance-create-dialog.component';
 
 @Component({
   selector: 'app-members-details',
@@ -23,6 +26,7 @@ export class MembersDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private membersService: MembersService,
+    private dialog: MatDialog,
     private router: Router,
   ) {}
 
@@ -30,6 +34,7 @@ export class MembersDetailComponent implements OnInit {
 
   loading = true;
   member?: members.getOne.ResponsePayload;
+  birthdate?: string;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -46,6 +51,7 @@ export class MembersDetailComponent implements OnInit {
       .getOne(this.memberId)
       .then((member) => {
         this.member = member;
+        this.birthdate = member.birthdate.toLocaleDateString();
         this.loading = false;
       })
       .catch(() => {
@@ -73,6 +79,59 @@ export class MembersDetailComponent implements OnInit {
         this.loading = false;
       });
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  updateMember(field: keyof members.updateMember.RequestPayload, value: any) {
+    if (!this.memberId) {
+      throw new Error('No member ID provided');
+    }
+    this.membersService
+      .updateMember(this.memberId, { [field]: value })
+      .then((result) => {
+        this.member = result;
+        this.birthdate = result.birthdate.toLocaleDateString();
+      })
+      .catch(() => {
+        this.loadMemberDetails();
+      });
+  }
+
+  updateBirthdate(value: string) {
+    const parsed = new Date(value);
+    this.updateMember('birthdate', parsed);
+  }
+
+  createAttendance() {
+    if (!this.memberId) {
+      throw new Error('No member ID provided');
+    }
+    const dialogRef = this.dialog.open(AttendanceCreateDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!this.memberId) throw new Error('No member ID provided');
+      if (result) {
+        this.membersService
+          .createAttendance(this.memberId, result)
+          .then(() => {
+            this.loadMemberDetails();
+          })
+          .catch(() => {
+            this.loadMemberDetails();
+          });
+      }
+    });
+  }
+
+  async deleteMember() {
+    if (!this.memberId) {
+      throw new Error('No member ID provided');
+    }
+    this.loading = true;
+    await this.membersService.deleteMember(this.memberId);
+    this.loading = false;
+    this.router.navigate(['/']).then(() => {
+      this.router.navigate(['/members']);
+    });
+  }
 }
 
 @NgModule({
@@ -88,6 +147,7 @@ export class MembersDetailComponent implements OnInit {
     MatGridListModule,
     MatSelectModule,
     MatInputModule,
+    MatDatepickerModule,
   ],
   declarations: [MembersDetailComponent],
   exports: [MembersDetailComponent],

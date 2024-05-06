@@ -47,6 +47,35 @@ export class MembersService {
       ),
     );
   }
+
+  updateMember(id: string, payload: members.updateMember.RequestPayload) {
+    return lastValueFrom(
+      this.http.patch<members.updateMember.ResponsePayload>(
+        `${this.apiEndpoint}/updateMember/${id}`,
+        payload,
+      ),
+    );
+  }
+
+  createAttendance(
+    userId: string,
+    payload: members.createAttendance.RequestPayload,
+  ) {
+    return lastValueFrom(
+      this.http.post<members.createAttendance.ResponsePayload>(
+        `${this.apiEndpoint}/createAttendance/${userId}`,
+        payload,
+      ),
+    );
+  }
+
+  deleteMember(id: string) {
+    return lastValueFrom(
+      this.http.delete<members.deleteMember.ResponsePayload>(
+        `${this.apiEndpoint}/deleteMember/${id}`,
+      ),
+    );
+  }
 }
 
 @NgModule({

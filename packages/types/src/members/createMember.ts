@@ -7,4 +7,6 @@ export interface RequestPayload {
   birthdate: Date;
 }
 
-export interface ResponsePayload extends getAll.ResponsePayload {}
+export interface ResponsePayload extends getAll.ResponsePayload {
+  newMemberId: string;
+}

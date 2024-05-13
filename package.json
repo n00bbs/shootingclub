@@ -15,7 +15,7 @@
     "@angular-eslint/schematics": "17.3.0",
     "@angular-eslint/template-parser": "17.3.0",
     "@angular/cli": "^17.2.2",
-    "@angular/compiler-cli": "^17.2.0",
+    "@angular/compiler-cli": "^17.3.8",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
